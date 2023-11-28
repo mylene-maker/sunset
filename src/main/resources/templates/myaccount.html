@@ -1,0 +1,134 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon compte</title>
+    <div th:insert="~{parts/style_script}"></div>
+</head>
+<body>
+
+<header th:include="~{parts/header :: header}"></header>
+
+
+<section class="m-5">
+    <h2 class="mb-5">Mes informations personnelles</h2>
+
+    <div th:if="${user.getFirstname() != null}">
+        <p><strong class="label">Nom :</strong> <span th:text="${user.getLastname()}"></span></p>
+    </div>
+
+    <div th:if="${user.getLastname() != null}">
+        <p><strong class="label">Prénom :</strong> <span th:text="${user.getFirstname()}"></span></p>
+    </div>
+
+    <div th:if="${user.getEmail() != null}">
+        <p><strong class="label">Email:</strong> <span th:text="${user.getEmail()}"></span></p>
+    </div>
+
+    <p class="label"><strong>Adresse postale :</strong> </p>
+    <div th:if="${user.street_number != null}">
+        <p><span th:text="${user.getStreet_number()} + ' ' + ${user.getStreet_name()}"></span></p>
+    </div>
+    <div th:if="${user.getCountry() != null}">
+        <p><span th:text="${user.getZip_code()} + ' ' + ${user.getCountry()}"></span></p>
+    </div>
+
+
+
+<!--    <div class="mt-2 mb-5">-->
+<!--        <a th:href="@{/users/edit/{id}(user=${user.id})}">-->
+<!--        Modifier mes informations-->
+<!--        </a>-->
+<!--    </div>-->
+
+    <!-- Formulaire de modification -->
+    <form th:action="@{/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
+        <input type="hidden" th:field="*{id}" />
+
+        <label>Nouveau Nom:</label>
+        <input type="text" th:field="*{lastname}" />
+
+        <label>Nouveau Prénom:</label>
+        <input type="text" th:field="*{firstname}" />
+
+        <label>Nouveau mail:</label>
+        <input type="text" th:field="*{email}" />
+
+        <label>Nouveau numero rue:</label>
+        <input type="number" th:field="*{street_number}" />
+
+        <label>Nouveau non de rue:</label>
+        <input type="text" th:field="*{street_name}" />
+
+        <label>Nouveau code postal:</label>
+        <input type="text" th:field="*{zip_code}" />
+
+        <label>Nouveau pays:</label>
+        <input type="text" th:field="*{country}" />
+
+        <label>Nouveau mot de passe:</label>
+        <input type="password" th:field="*{password}" />
+
+        <button type="submit">Enregistrer les modifications</button>
+    </form>
+
+</section>
+
+<section class="m-5">
+    <h2 class="mb-5">Mes reservations</h2>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active text-primary tab" id="home-tab" data-bs-toggle="tab" data-bs-target="#isOk" type="button" role="tab" aria-controls="home" aria-selected="true">Mes reservations Acceptées</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-primary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#inProcess" type="button" role="tab" aria-controls="profile" aria-selected="false">Mes reservations en attente</button>
+        </li>
+        <li class="nav-item " role="presentation">
+            <button class="nav-link text-primary" id="contact-tab" data-bs-toggle="tab" data-bs-target="#canceled" type="button" role="tab" aria-controls="contact" aria-selected="false">Mes reservations Refusées</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="isOk" role="tabpanel" aria-labelledby="home-tab">
+            <h4 class="m-5">Toutes vos reservations confirmées apparaitrons ici</h4>
+
+            <div th:each="reservation, reservationIndex : ${reservations}">
+                <div th:if="${reservation.isAccepted() == true}" class="m-5">
+                    <p><strong>Reservation n° :</strong> <span th:text="${reservationIndex.index + 1}"></span></p>
+                    <p><strong>Date de debut :</strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>
+                    <p><strong>Equipement souhaité :</strong> <span  th:text="${reservation.getEquipment()}"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
+            <h4 class="m-5">Toutes vos reservations en attente de validation apparaitrons ici</h4>
+
+            <div class="tab-pane fade show active" id="isAccepted" role="tabpanel" aria-labelledby="home-tab">
+                <div th:each="reservation, reservationIndex : ${reservations}">
+                    <div th:if="${reservation.isAccepted() == false}" class="m-5">
+                        <p><strong>Reservation n° :</strong> <span th:text="${reservationIndex.index + 1}"></span></p>
+                        <p><strong>Date de debut :</strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>
+                        <p><strong>Equipement souhaité :</strong> <span  th:text="${reservation.getEquipment()}"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="canceled" role="tabpanel" aria-labelledby="contact-tab">...</div>
+    </div>
+
+</section>
+
+<a sec:authorize="hasAnyRole('admin')" th:href="@{/admin}">Espace administrateur</a>
+
+<!--<a th:href="@{/reservation/new}"  th:action="@{/login}" class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">-->
+<!--    Faire une reservation-->
+<!--</a>-->
+
+<!--<form method="post" th:action="@{/logout}">-->
+<!--    <input type="submit" value="Me deconnecter">-->
+<!--</form>-->
+
+
+</body>
+</html>

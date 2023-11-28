@@ -1,0 +1,98 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <div th:insert="~{parts/style_script}"></div>
+
+
+    <title>Accueil</title>
+</head>
+<body>
+<header th:include="~{parts/header :: header}"></header>
+
+<h1>Formulaire de reservation</h1>
+
+<form th:object="${reservationForm}" method="post">
+
+    <div class = "form-group row ">
+        <div class="col-sm-8">
+            <span class="text-danger" th:errors="*{global}"> </span>
+        </div>
+    </div>
+
+
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <div>
+        <label>Date de debut</label>
+        <input type="date" th:field="*{dateStart}"/>
+        <span th:if="${#fields.hasErrors('dateStart')}" th:errors="*{dateStart}"></span>
+    </div>
+    <div>
+        <label>Date de fin</label>
+        <input type="date" th:field="*{dateEnd}"/>
+        <span th:if="${#fields.hasErrors('dateEnd')}" th:errors="*{dateEnd}"></span>
+    </div>
+
+    <div id="collectionEquipment">
+        <div class="collectionForm" th:each="resa, state : ${reservationForm.emplacements}" >
+
+            <div>
+                <label th:text="'Parassol ' + ${state.index + 1 }"></label>
+
+                <div>
+                    <label>File</label>
+                    <select th:name="'items_'+${state.index}+'_file'">
+                        <option th:each="i: ${#numbers.sequence(1, 8)}" th:value="${i}" th:text="${i}"></option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Equipement</label>
+                    <select th:name="'items_'+${state.index}+'_equipment'">
+                        <option th:selected="${resa.getEquipment()=='UN_LIT'}" th:value="'UN_LIT'">Un lit</option>
+                        <option th:selected="${resa.getEquipment()=='DEUX_LITS'}" th:value="'DEUX_LITS'">2 lits</option>
+                        <option th:selected="${resa.getEquipment()=='UN_FAUTEUIL'}" th:value="'UN_FAUTEUIL'">Un fauteuil</option>
+                        <option th:selected="${resa.getEquipment()=='DEUX_FAUTEUILS'}" th:value="'DEUX_FAUTEUILS'">2 fauteuils</option>
+                        <option th:selected="${resa.getEquipment()=='UN_LIT_ET_UN_FAUTEUIL'}" th:value="'UN_LIT_ET_UN_FAUTEUIL'">1 lit et 2 fauteuils</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="btn" id="addEmplacementButton">Ajouter un emplacement</a>
+
+    <div>
+        <label>Remarque</label>
+        <input type="text" th:field="*{remarque}"/>
+        <span th:if="${#fields.hasErrors('remarque')}" th:errors="*{remarque}"></span>
+    </div>
+    <button type="submit">Reserver</button>
+</form>
+
+<div th:insert="~{parts/style_script :: script}"></div>
+
+
+<script>
+    $("#addEmplacementButton").click(function(){
+        let index = $('.collectionForm').length - 1;
+        divToCopy = $('.collectionForm').last();
+
+        newDiv = divToCopy.html().replace('name="items_'+index+'_file"', 'name="items_'+parseInt(index+1)+'_file"');
+        newDiv = newDiv.replace('name="items_'+index+'_equipment"', 'name="items_'+parseInt(index+1)+'_equipment"');
+        newDiv = newDiv.replace('Parassol '+parseInt(index+1), 'Parassol '+parseInt(index+2));
+
+        // J'ajoute une nouvelle div qui contient le nouvel emplacement
+        newDiv = '<div class="collectionForm">'+newDiv+'</div>';
+
+
+        // J'ajoute cette nouvelle div à ma collection
+        $('#collectionEquipment').append(newDiv);
+
+    })
+</script>
+
+
+</body>
+</html>

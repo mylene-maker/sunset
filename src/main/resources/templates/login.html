@@ -1,0 +1,46 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <div th:insert="~{parts/style_script}"></div>
+
+    <title>Connexion</title>
+</head>
+<body>
+<header th:include="~{parts/header :: header}"></header>
+
+<h1>Mon formulaire de connexion</h1>
+
+<div th:if="${param.error}">
+    Identifiants invalide !
+</div>
+
+<div th:if="${param.logout}">
+    Vous êtes déconnecté !
+</div>
+
+<div th:if="${param.registersuccess}">
+    Votre compte a bien été crée ! Vous pouvez vous conneter !
+</div>
+
+<form th:action="@{/login}" method="post">
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> // securise la soumision des formulaires avec un token-->
+    <div>
+        <label for="email">Email</label>
+        <input type="text"  name="username" id="email">
+    </div>
+
+    <div>
+        <label for="password">Mot de passe</label>
+        <input type="password"  name="password" id="password">
+    </div>
+    <input th:type="submit">
+</form>
+
+<p>Je n'ai pas de compte</p>
+<a href="http://localhost:8081/sunset/register">S'inscrire</a>
+
+</body>
+</html>

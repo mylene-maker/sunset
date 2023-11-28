@@ -1,0 +1,80 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <div th:insert="~{parts/style_script}"></div>
+
+    <title>Accueil</title>
+</head>
+<body>
+<header th:include="parts/header :: header"></header>
+
+<h1 class="m-5">
+    Bienvenue sur l'espace administrateur ! Cet espace est prevu pour moderer les reservations.
+</h1>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#inProcess" type="button" role="tab" aria-controls="home" aria-selected="true">COMMANDES EN ATTENTE</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#validated" type="button" role="tab" aria-controls="profile" aria-selected="false">COMMANDES VALIDEES</button>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="inProcess" role="tabpanel" aria-labelledby="home-tab">
+        <h2 class="m-5">Reservation en attente de traitement</h2>
+
+        <div th:each="reservation, reservationIndex : ${reservations}">
+            <div th:if="${reservation.isAccepted() == false}" class="m-5">
+                <p><strong>Reservation n° :</strong> <span th:text="${reservationIndex.index}"></span></p>
+                <p><strong>Date de debut :</strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>
+                <p><strong>Equipement souhaité :</strong> <span  th:text="${reservation.getEquipment()}"></span></p>
+                <p><strong>Emplacement :</strong> <span  th:text="${reservation.getLane()}"></span></p>
+                <span>
+             <a th:href="@{'/admin/accept/' + ${reservation.id}}">
+                <button class="btn btn-outline-warning">Accepter</button>
+            </a>
+            <a th:href="@{'/admin/reject/' + ${reservation.id}}">
+                <button class="btn btn-danger">Refuser</button>
+            </a>
+        </span>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="validated" role="tabpanel" aria-labelledby="profile-tab">
+        <h2 class="m-5">Les reservations Validées</h2>
+
+        <div th:each="reservation, reservationIndex : ${reservations}">
+            <div th:if="${reservation.isAccepted() == true}" class="m-5">
+                <p><strong>Reservation n° :</strong> <span th:text="${reservationIndex.index + 1}"></span></p>
+                <p><strong>Date de debut :</strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>
+                <p><strong>Equipement souhaité :</strong> <span  th:text="${reservation.getEquipment()}"></span></p>
+                <!--        <p><strong>Emplacement :</strong> <span  th:text="${reservation.getLane() + reservation.getColumn()}"></span></p>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<h2 class="m-5">Reservations Refusés</h2>-->
+
+<!--<div th:each="reservation, reservationIndex : ${reservations}">-->
+<!--    <div th:if="${reservation.isAccepted() == false}" class="m-5">-->
+<!--        <p><strong>Reservation n° :</strong> <span th:text="${reservationIndex.index}"></span></p>-->
+<!--        <p><strong>Date de debut :</strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>-->
+<!--        <p><strong>Equipement souhaité :</strong> <span  th:text="${reservation.getEquipment()}"></span></p>-->
+<!--        <p><strong>Emplacement :</strong> <span  th:text="${reservation.getLane() + reservation.getColumn()}"></span></p>-->
+<!--        <span>-->
+<!--             <a th:href="@{'/admin/accept/' + ${reservation.id}}">-->
+<!--                <button class="btn btn-outline-warning">Accepter</button>-->
+<!--            </a>-->
+<!--            <a th:href="@{'/admin/reject/' + ${reservation.id}}">-->
+<!--                <button class="btn btn-danger">Refuser</button>-->
+<!--            </a>-->
+<!--        </span>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+</body>
+</html>
