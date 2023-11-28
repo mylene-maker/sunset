@@ -14,11 +14,11 @@
 <section class="m-5">
     <h2 class="mb-5">Mes informations personnelles</h2>
 
-    <div th:if="${user.getFirstname() != null}">
+    <div th:if="${user.getLastname() != null}">
         <p><strong class="label">Nom :</strong> <span th:text="${user.getLastname()}"></span></p>
     </div>
 
-    <div th:if="${user.getLastname() != null}">
+    <div th:if="${user.getFirstname() != null}">
         <p><strong class="label">Prénom :</strong> <span th:text="${user.getFirstname()}"></span></p>
     </div>
 
@@ -33,7 +33,6 @@
     <div th:if="${user.getCountry() != null}">
         <p><span th:text="${user.getZip_code()} + ' ' + ${user.getCountry()}"></span></p>
     </div>
-
 
 
 <!--    <div class="mt-2 mb-5">-->
@@ -53,7 +52,7 @@
         <input type="text" th:field="*{firstname}" />
 
         <label>Nouveau mail:</label>
-        <input type="text" th:field="*{email}" />
+        <input type="email" th:field="*{email}" />
 
         <label>Nouveau numero rue:</label>
         <input type="number" th:field="*{street_number}" />

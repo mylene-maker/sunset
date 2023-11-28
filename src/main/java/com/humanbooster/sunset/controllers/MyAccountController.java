@@ -66,7 +66,6 @@ public class MyAccountController {
         }
 
         if (bindingResult.hasErrors()) {
-            System.out.println("test");
             return "myaccount";
 
         }else {
