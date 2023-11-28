@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 
 @Service
 public class UserService{
@@ -26,7 +28,14 @@ public class UserService{
 
     public User save(User user) {
         user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-        user.addRole(this.roleService.findByRoleName("USER"));
+        if (Objects.equals(user.getRoles(), this.roleService.findByRoleName("USER"))) {
+            user.addRole(this.roleService.findByRoleName("USER"));
+        } else if (Objects.equals(user.getRoles(), this.roleService.findByRoleName("ADMIN"))) {
+            user.addRole(this.roleService.findByRoleName("ADMIN"));
+        }else {
+            user.addRole(this.roleService.findByRoleName("USER"));
+            user.addRole(this.roleService.findByRoleName("ADMIN"));
+        }
         return this.userRepository.save(user);
     }
 }
