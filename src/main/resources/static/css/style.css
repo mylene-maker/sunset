@@ -10,5 +10,245 @@ nav.navbar.navbar-toggler-icon{
     border:none;!important
 }
 
+/* Style for paragraphs */
+p {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Specific style for bold paragraph */
+.fw-bold {
+    font-weight: bold;
+    color: #000;
+}
+
+/* Heading styles */
+h2, h3, h5, h6 {
+    color: #0056b3; /* Example color */
+    margin-bottom: 15px;
+}
+
+/* Button styling */
+.btn-outline-warning {
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: #000;
+}
+
+/* Background and layout styles */
+.bg-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.bg-warning {
+    background-color: #ffc107;
+    color: #000;
+}
+
+/* SVG icon styles */
+svg {
+    fill: #007bff; /* Example fill color */
+    width: 24px; /* Example size */
+    height: 24px; /* Example size */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h2, h3, h5, h6 {
+        font-size: smaller; /* Smaller text on smaller screens */
+    }
+}
+
+/* Pour le formulaire*/
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #ff9900;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+form {
+    background-color: #fff;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    /*border-radius: 8px;*/
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type='date'],
+input[type='text'],
+input[type='password'],
+input[type='number'],
+input[type='email'],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    /*width: 100%;*/
+    padding: 10px;
+    background-color: #ffcc00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+/* Footer Styling */
+/* General Footer Styling */
+.footer-container {
+    text-align: center;
+    padding-top: 20px; /* Add padding on top */
+}
+
+.footer-container h2 {
+    margin-bottom: 15px;
+}
+
+/* Contact Section Styling */
+.bg-warning {
+    background-color: #FFDAB9; /* Lighter orange background for contact section */
+    padding: 20px 0;
+}
+
+/* Style for each contact item */
+.bg-warning .m-3 {
+    border-bottom: 2px solid #FFA07A; /* Slightly darker orange separator */
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    color: #000; /* Black color for text */
+}
+
+/* Last Contact Item Without Bottom Border */
+.bg-warning .m-3:last-child {
+    border-bottom: none;
+}
+
+/* Styling for SVG Icons */
+.bg-warning svg {
+    fill: #000000; /* Black color for icons */
+    margin-bottom: 10px;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .bg-warning .m-3 {
+        width: 90%; /* Adjust width on smaller screens */
+    }
+}
+/* General Navbar Styling */
+.navbar {
+    background-color: #f8f9fa; /* Light background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.navbar-brand img {
+    width: auto; /* Adjust as necessary */
+    height: 40px; /* Adjust logo size */
+}
+
+/* Navbar Toggler Styling */
+.navbar-toggler {
+    border: none; /* Removes default border */
+    outline: none; /* Removes outline on focus */
+}
+
+/* Navbar Link Styling */
+.nav-link {
+    color: #333; /* Dark text color for visibility */
+    transition: border-bottom 0.3s; /* Smooth transition for underline effect */
+    padding-bottom: 0.25rem; /* Space between text and underline */
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #e36f20; /* Highlight color on hover or focus */
+    border-bottom: 2px solid #e36f20; /* Underline effect */
+    text-decoration: none; /* Remove default text decoration */
+}
+
+/* Adjustments for Authenticated User Section */
+.dep {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between username and logout button */
+}
+
+.dep p {
+    margin-bottom: 0; /* Remove default margin */
+}
+
+/* Logout Button Styling */
+input[type="submit"] {
+    /*background: none;*/
+    /*color: #007bff;*/
+    padding: 0.25rem 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+input[type="submit"]:hover {
+    color: #0056b3; /* Darker color on hover */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .navbar-nav {
+        margin-right: 0; /* Adjust right margin on smaller screens */
+    }
+}
+
 
 

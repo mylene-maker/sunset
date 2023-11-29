@@ -1,7 +1,9 @@
 package com.humanbooster.sunset.controllers;
 
+import com.humanbooster.sunset.models.Command;
 import com.humanbooster.sunset.models.Reservation;
 import com.humanbooster.sunset.models.User;
+import com.humanbooster.sunset.services.CommandService;
 import com.humanbooster.sunset.services.ReservationService;
 import com.humanbooster.sunset.services.UserService;
 import jakarta.validation.Valid;
@@ -29,6 +31,9 @@ public class MyAccountController {
     @Autowired
     ReservationService reservationService;
 
+    @Autowired
+    CommandService commandService;
+
     @RequestMapping("/myaccount")
     public ModelAndView myAccount(Model model) {
 
@@ -39,10 +44,12 @@ public class MyAccountController {
         User currentUser = userService.findByEmail(email);
 
         List<Reservation> reservations = reservationService.findAll();
+        List<Command> commands = commandService.findAll();
 
         // Ajoutez le nom d'utilisateur au modèle
         model.addAttribute("user", currentUser);
         model.addAttribute("reservations", reservations);
+        model.addAttribute("commands", commands);
 
         ModelAndView mv = new ModelAndView("myaccount");
         return mv;

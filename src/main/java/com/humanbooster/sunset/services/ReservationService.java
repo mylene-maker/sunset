@@ -117,12 +117,19 @@ public class ReservationService {
                 this.reservationRepository.save(reservation);
 
             } else {
+                Reservation reservation = new Reservation();
+                reservation.setDate_to(calArrivee.getTime());
+                reservation.setLane(emplacementForm.getFile());
+                reservation.setEquipment(emplacementForm.getEquipment());
+                reservation.setCommand(command);
+
+                this.reservationRepository.save(reservation);
 
                 while (!stringDateArrivee.equals(stringDateDepart)) {
 
                     calArrivee.add(Calendar.DAY_OF_MONTH, 1);
                     stringDateArrivee = sdf.format(calArrivee.getTime());
-                    Reservation reservation = new Reservation();
+                    reservation = new Reservation();
                     reservation.setDate_to(calArrivee.getTime());
                     reservation.setLane(emplacementForm.getFile());
                     reservation.setEquipment(emplacementForm.getEquipment());
@@ -135,7 +142,6 @@ public class ReservationService {
         }
 
     }
-
 
     public void acceptReservation(Long reservationId) {
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
@@ -152,7 +158,7 @@ public class ReservationService {
 
         if (optionalReservation.isPresent()) {
             Reservation reservation = optionalReservation.get();
-            // Vous pouvez ajouter d'autres logiques ici si nécessaire avant de supprimer la réservation
+
 //            reservationRepository.delete(reservation);
         }
     }

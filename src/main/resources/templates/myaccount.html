@@ -26,6 +26,17 @@
         <p><strong class="label">Email:</strong> <span th:text="${user.getEmail()}"></span></p>
     </div>
 
+    <div th:if="${user.getRoles() != null}">
+        <p><strong class="label">Rôle:</strong>
+            <span th:each="role, iterStat : ${user.getRoles()}">
+            <span th:text="${role.getRoleName()}"></span>
+                <!-- Add a comma if it's not the last element -->
+            <span th:if="${!iterStat.last}">& </span>
+        </span>
+        </p>
+    </div>
+
+
     <p class="label"><strong>Adresse postale :</strong> </p>
     <div th:if="${user.street_number != null}">
         <p><span th:text="${user.getStreet_number()} + ' ' + ${user.getStreet_name()}"></span></p>
@@ -41,37 +52,54 @@
 <!--        </a>-->
 <!--    </div>-->
 
-    <!-- Formulaire de modification -->
-    <form th:action="@{/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
-        <input type="hidden" th:field="*{id}" />
+    <button type="button" class="btn btn-primary" id="showModalBtn">
+        Mettre à jour mes informations
+    </button>
 
-        <label>Nouveau Nom:</label>
-        <input type="text" th:field="*{lastname}" />
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mettre à jours mes données</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                            <form th:action="@{/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
+                                <input type="hidden" th:field="*{id}" />
 
-        <label>Nouveau Prénom:</label>
-        <input type="text" th:field="*{firstname}" />
+                                <label>Nouveau Nom:</label>
+                                <input type="text" th:field="*{lastname}" />
 
-        <label>Nouveau mail:</label>
-        <input type="email" th:field="*{email}" />
+                                <label>Nouveau Prénom:</label>
+                                <input type="text" th:field="*{firstname}" />
 
-        <label>Nouveau numero rue:</label>
-        <input type="number" th:field="*{street_number}" />
+                                <label>Nouveau mail:</label>
+                                <input type="email" th:field="*{email}" />
 
-        <label>Nouveau non de rue:</label>
-        <input type="text" th:field="*{street_name}" />
+                                <label>Nouveau numero rue:</label>
+                                <input type="number" th:field="*{street_number}" />
 
-        <label>Nouveau code postal:</label>
-        <input type="text" th:field="*{zip_code}" />
+                                <label>Nouveau non de rue:</label>
+                                <input type="text" th:field="*{street_name}" />
 
-        <label>Nouveau pays:</label>
-        <input type="text" th:field="*{country}" />
+                                <label>Nouveau code postal:</label>
+                                <input type="text" th:field="*{zip_code}" />
 
-        <label>Nouveau mot de passe:</label>
-        <input type="password" th:field="*{password}" />
+                                <label>Nouveau pays:</label>
+                                <input type="text" th:field="*{country}" />
 
-        <button type="submit">Enregistrer les modifications</button>
-    </form>
+                                <label>Nouveau mot de passe:</label>
+                                <input type="password" th:field="*{password}" required />
 
+                                <button type="submit">Enregistrer les modifications</button>
+                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </section>
 
 <section class="m-5">
@@ -84,41 +112,41 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link text-primary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#inProcess" type="button" role="tab" aria-controls="profile" aria-selected="false">Mes reservations en attente</button>
         </li>
-        <li class="nav-item " role="presentation">
-            <button class="nav-link text-primary" id="contact-tab" data-bs-toggle="tab" data-bs-target="#canceled" type="button" role="tab" aria-controls="contact" aria-selected="false">Mes reservations Refusées</button>
-        </li>
     </ul>
     <div class="tab-content" id="myTabContent">
+
         <div class="tab-pane fade show active" id="isOk" role="tabpanel" aria-labelledby="home-tab">
-            <h4 class="m-5">Toutes vos reservations confirmées apparaitrons ici</h4>
+            <h2 class="m-5">Reservation confirmées</h2>
 
-            <div th:each="reservation, reservationIndex : ${reservations}">
-                <div th:if="${reservation.isAccepted() == true}" class="m-5">
-                    <p><strong>Reservation n° :</strong> <span th:text="${reservationIndex.index + 1}"></span></p>
-                    <p><strong>Date de debut :</strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>
-                    <p><strong>Equipement souhaité :</strong> <span  th:text="${reservation.getEquipment()}"></span></p>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
-            <h4 class="m-5">Toutes vos reservations en attente de validation apparaitrons ici</h4>
+            <div th:each="command, commandIndex : ${commands}" th:if="${command.getUser().getId() == user.getId()}">
+                <!-- Check if there are any reservations that are not accepted -->
+<!--                <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasAcceptedReservations(command.getReservations())}">-->
 
-            <div class="tab-pane fade show active" id="isAccepted" role="tabpanel" aria-labelledby="home-tab">
-                <div th:each="reservation, reservationIndex : ${reservations}">
-                    <div th:if="${reservation.isAccepted() == false}" class="m-5">
-                        <p><strong>Reservation n° :</strong> <span th:text="${reservationIndex.index + 1}"></span></p>
-                        <p><strong>Date de debut :</strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>
-                        <p><strong>Equipement souhaité :</strong> <span  th:text="${reservation.getEquipment()}"></span></p>
+                    <div class="m-5">
+                        <p><span>Commande n° : </span> <span th:text="${commandIndex.index}"></span> <span>confirmé !</span></p>
+
+                        <div class="d-flex justify-content-around mt-3">
+                            <strong class="label">Reservation:</strong>
+                            <div th:each="reservation, iterStat : ${command.getReservations()}" th:if="${reservation.isAccepted() == true}">
+                                <p><strong>Date de la reservation, le </strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>
+                                <p> Equipement reservé : <span th:text="${reservation.getEquipment()}"></span></p>
+                                <p> Emplacement : <span th:text="${reservation.getLane()}"></span></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
+<!--                </th:block>-->
             </div>
+            <a href="#" class="btn btn-dark">Proceder au paiement</a>
         </div>
-        <div class="tab-pane fade" id="canceled" role="tabpanel" aria-labelledby="contact-tab">...</div>
+
+        <div class="tab-pane fade show active" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
+            a venir...
+        </div>
     </div>
 
 </section>
 
-<a sec:authorize="hasAnyRole('admin')" th:href="@{/admin}">Espace administrateur</a>
+<!--<a sec:authorize="hasAnyRole('admin')" th:href="@{/admin}">Espace administrateur</a>-->
 
 <!--<a th:href="@{/reservation/new}"  th:action="@{/login}" class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">-->
 <!--    Faire une reservation-->

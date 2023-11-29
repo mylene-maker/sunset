@@ -1,6 +1,8 @@
 package com.humanbooster.sunset.controllers;
 
+import com.humanbooster.sunset.models.Command;
 import com.humanbooster.sunset.models.Reservation;
+import com.humanbooster.sunset.services.CommandService;
 import com.humanbooster.sunset.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +20,15 @@ public class AdminController {
     @Autowired
     ReservationService reservationService;
 
+    @Autowired
+    CommandService commandService;
+
     @RequestMapping()
     ModelAndView adminHome(Model model){
 
+        List<Command> commands = commandService.findAll();
         List<Reservation> reservations = reservationService.findAll();
+        model.addAttribute("commands", commands);
         model.addAttribute("reservations", reservations);
         ModelAndView mv = new ModelAndView("admin");
 
@@ -32,7 +39,6 @@ public class AdminController {
     public String acceptReservation(@PathVariable Long reservationId) {
         // Appeler le service pour accepter la réservation
         reservationService.acceptReservation(reservationId);
-
         // Rediriger vers la page d'administration ou une autre page appropriée
         return "redirect:/admin";
     }

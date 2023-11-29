@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <div th:insert="~{parts/style_script}"></div>
-
-
     <title>Accueil</title>
 </head>
 <body>
@@ -26,15 +24,15 @@
     <div>
         <label>Date de debut</label>
         <input type="date" th:field="*{dateStart}"/>
-        <span th:if="${#fields.hasErrors('dateStart')}" th:errors="*{dateStart}"></span>
+        <span th:if="${#fields.hasErrors('dateStart')}" th:errors="*{dateStart}" class="text-danger"></span>
     </div>
     <div>
         <label>Date de fin</label>
         <input type="date" th:field="*{dateEnd}"/>
-        <span th:if="${#fields.hasErrors('dateEnd')}" th:errors="*{dateEnd}"></span>
+        <span th:if="${#fields.hasErrors('dateEnd')}" th:errors="*{dateEnd}" class="text-danger"></span>
     </div>
 
-    <div id="collectionEquipment">
+    <div id="collectionEquipment" class="bg-primary p-3 text-white">
         <div class="collectionForm" th:each="resa, state : ${reservationForm.emplacements}" >
 
             <div>
@@ -61,12 +59,12 @@
         </div>
     </div>
 
-    <a class="btn" id="addEmplacementButton">Ajouter un emplacement</a>
+    <a class="btn btn-outline-info m-2" id="addEmplacementButton">Ajouter un emplacement</a>
 
     <div>
         <label>Remarque</label>
         <input type="text" th:field="*{remarque}"/>
-        <span th:if="${#fields.hasErrors('remarque')}" th:errors="*{remarque}"></span>
+        <span th:if="${#fields.hasErrors('remarque')}" th:errors="*{remarque}" class="text-danger"></span>
     </div>
     <button type="submit">Reserver</button>
 </form>
@@ -74,24 +72,7 @@
 <div th:insert="~{parts/style_script :: script}"></div>
 
 
-<script>
-    $("#addEmplacementButton").click(function(){
-        let index = $('.collectionForm').length - 1;
-        divToCopy = $('.collectionForm').last();
 
-        newDiv = divToCopy.html().replace('name="items_'+index+'_file"', 'name="items_'+parseInt(index+1)+'_file"');
-        newDiv = newDiv.replace('name="items_'+index+'_equipment"', 'name="items_'+parseInt(index+1)+'_equipment"');
-        newDiv = newDiv.replace('Parassol '+parseInt(index+1), 'Parassol '+parseInt(index+2));
-
-        // J'ajoute une nouvelle div qui contient le nouvel emplacement
-        newDiv = '<div class="collectionForm">'+newDiv+'</div>';
-
-
-        // J'ajoute cette nouvelle div à ma collection
-        $('#collectionEquipment').append(newDiv);
-
-    })
-</script>
 
 
 </body>
