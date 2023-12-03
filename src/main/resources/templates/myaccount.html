@@ -52,7 +52,7 @@
 <!--        </a>-->
 <!--    </div>-->
 
-    <button type="button" class="btn btn-primary" id="showModalBtn">
+    <button type="button" class="btn btn-outline-warning" id="showModalBtn">
         Mettre à jour mes informations
     </button>
 
@@ -61,7 +61,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Mettre à jours mes données</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    
+
 </section>
 
 <section class="m-5">
@@ -116,31 +116,83 @@
     <div class="tab-content" id="myTabContent">
 
         <div class="tab-pane fade show active" id="isOk" role="tabpanel" aria-labelledby="home-tab">
-            <h2 class="m-5">Reservation confirmées</h2>
+            <h2 class="m-5">Reservations confirmées</h2>
 
             <div th:each="command, commandIndex : ${commands}" th:if="${command.getUser().getId() == user.getId()}">
                 <!-- Check if there are any reservations that are not accepted -->
-<!--                <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasAcceptedReservations(command.getReservations())}">-->
+                <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasAcceptedReservations(command.getReservations())}">
 
-                    <div class="m-5">
-                        <p><span>Commande n° : </span> <span th:text="${commandIndex.index}"></span> <span>confirmé !</span></p>
+                    <div class="card m-5 p-3">
+                        <p><span>Commande n° </span> <span th:text="${commandIndex.index}"></span> <span>confirmé !</span></p>
 
-                        <div class="d-flex justify-content-around mt-3">
-                            <strong class="label">Reservation:</strong>
-                            <div th:each="reservation, iterStat : ${command.getReservations()}" th:if="${reservation.isAccepted() == true}">
-                                <p><strong>Date de la reservation, le </strong> <span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></p>
-                                <p> Equipement reservé : <span th:text="${reservation.getEquipment()}"></span></p>
-                                <p> Emplacement : <span th:text="${reservation.getLane()}"></span></p>
+                        <div class="">
+                            <div >
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Equipement</th>
+                                        <th scope="col">Emplacement</th>
+                                        <th scope="col">Prix</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="reservation, iterStat : ${command.getReservations()}" th:if="${reservation.isAccepted() == true}">
+                                    <tr>
+                                        <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></td>
+                                        <td><span th:text="${reservation.getEquipment()}"></span></td>
+                                        <td><span th:text="${reservation.getLane()}"></span></td>
+                                        <td><span th:text="${T(com.humanbooster.sunset.utils.ReservationUtils).getPriceByLane(reservation.getLane()) + ' €'}"></span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+                        <div>
+                            <p>
+                                Prix total : <span th:text="${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())}"></span> €
+                            </p>
+                        </div>
+                        <div>
+                            <a th:href="@{/panier(total=${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())})}" class="btn btn-dark">Proceder au paiement</a>
+                        </div>
                     </div>
-<!--                </th:block>-->
+                </th:block>
             </div>
-            <a href="#" class="btn btn-dark">Proceder au paiement</a>
         </div>
 
         <div class="tab-pane fade show active" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
-            a venir...
+            <h2 class="m-5">Reservations en attente</h2>
+
+            <div th:each="command, commandIndex : ${commands}" th:if="${command.getUser().getId() == user.getId()}">
+                <!-- Check if there are any reservations that are not accepted -->
+                <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasUnacceptedReservations(command.getReservations())}">
+
+                    <div class="card m-5 p-3">
+                        <p><span>Commande n° </span> <span th:text="${commandIndex.index}"></span> <span>est en cours de traitement !</span></p>
+
+                        <div class="">
+                            <div >
+                                <table class="table" >
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Equipement</th>
+                                        <th scope="col">Emplacement</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="reservation, iterStat : ${command.getReservations()}" th:if="${reservation.isAccepted() == false}">
+                                    <tr>
+                                        <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></td>
+                                        <td><span th:text="${reservation.getEquipment()}"></span></td>
+                                        <td><span th:text="${reservation.getLane()}"></span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
         </div>
     </div>
 

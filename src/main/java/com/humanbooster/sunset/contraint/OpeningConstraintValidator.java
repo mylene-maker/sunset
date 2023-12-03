@@ -35,6 +35,11 @@ public class OpeningConstraintValidator implements ConstraintValidator<OpeningCo
             int month = calendar.get(Calendar.MONTH);
 
             // Si la réservation est en juin, c'est OK donc le retour sera à true
+            if (month == Calendar.JUNE) {
+                retour = true;
+            }
+
+            // Si la réservation est en juillet, c'est OK donc le retour sera à true
             if (month == Calendar.JULY) {
                 retour = true;
             }

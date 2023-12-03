@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
-    @Query("SELECT r, c FROM Reservation r JOIN r.command c WHERE r.id = :reservationId")
-    List<Object[]> findReservationAndCommand(@Param("reservationId") Long reservationId);
+
 }
