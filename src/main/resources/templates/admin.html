@@ -26,9 +26,9 @@
     </li>
 </ul>
 
-<div class="tab-content" id="myTabContent">
+<div class="tab-content bg-content" id="myTabContent">
     <div class="tab-pane fade show active" id="validated" role="tabpanel" aria-labelledby="home-tab">
-        <h2 class="m-5">Reservation confirmées</h2>
+        <h2 class="m-5 pt-3">Reservation confirmées</h2>
 
         <div th:each="command, commandIndex : ${commands}" th:if="${command.getReservations() != null}">
             <!-- Check if there are any reservations that are accepted -->
@@ -63,8 +63,8 @@
             </th:block>
         </div>
     </div>
-    <div class="tab-pane fade show active" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
-        <h2 class="m-5">Reservation en attente de traitement</h2>
+    <div class="tab-pane fade show" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
+        <h2 class="m-5 pt-3">Reservation en attente de traitement</h2>
 
         <div th:each="command, commandIndex : ${commands}" th:if="${command.getReservations() != null}">
             <!-- Check if there are any reservations that are not accepted -->

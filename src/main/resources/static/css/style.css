@@ -1,3 +1,15 @@
+/*Header*/
+/* Adjustments for Authenticated User Section */
+.dep {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between username and logout button */
+}
+.navbar-bg{
+    background-color: white;
+}
+/*Header*/
+
 /*Home page css*/
 .opening-date{
     align-items: baseline;
@@ -26,7 +38,24 @@
     color: #000; /* Black color for text */
     width: 70%;
 }
+iframe{
+    width: 100%;
+}
 /*Home page css*/
+
+/*Reservation page*/
+#collectionEquipment{
+    background-color: rgba(113, 128, 185, 0.7);
+}
+
+/*Reservation page*/
+
+
+.bg-content{
+    background: -webkit-linear-gradient(181deg, rgba(113, 128, 185, 0.1),#ffffff);/* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(181deg, rgba(113, 128, 185, 0.1),#ffffff);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .label{
     color: #7180B9;
 }
@@ -58,26 +87,26 @@ h2, h3, h5, h6 {
 }
 
 /* Button styling */
-.btn-outline-warning {
-    border-color: #ffc107;
-    color: #ffc107;
-}
+/*.btn-outline-warning {*/
+/*    border-color: #ffc107;*/
+/*    color: #ffc107;*/
+/*}*/
 
-.btn-outline-warning:hover {
-    background-color: #ffc107;
-    color: #000;
-}
+/*.btn-outline-warning:hover {*/
+/*    background-color: #ffc107;*/
+/*    color: #000;*/
+/*}*/
 
 /* Background and layout styles */
-.bg-secondary {
-    background-color: #6c757d;
-    color: #fff;
-}
+/*.bg-secondary {*/
+/*    background-color: #6c757d;*/
+/*    color: #fff;*/
+/*}*/
 
-.bg-warning {
-    background-color: #ffc107;
-    color: #000;
-}
+/*.bg-warning {*/
+/*    background-color: #ffc107;*/
+/*    color: #000;*/
+/*}*/
 
 /* SVG icon styles */
 svg {
@@ -94,36 +123,36 @@ svg {
 }
 
 /* Pour le formulaire*/
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
+/*body {*/
+/*    font-family: 'Arial', sans-serif;*/
+/*    background-color: #f4f4f4;*/
+/*    color: #333;*/
+/*    line-height: 1.6;*/
+/*}*/
 
-header {
-    background-color: #ff9900;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-}
+/*header {*/
+/*    background-color: #ff9900;*/
+/*    color: #fff;*/
+/*    padding: 1rem 0;*/
+/*    text-align: center;*/
+/*}*/
 
-h1 {
-    text-align: center;
-    margin-top: 1rem;
-}
+/*h1 {*/
+/*    text-align: center;*/
+/*    margin-top: 1rem;*/
+/*}*/
 
-form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff; /* Fond blanc */
-    border: 2px solid #6B92A4; /* Bordure avec une couleur spécifiée */
-    border-radius: 15px; /* Rayon pour des coins arrondis */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
-    display: block;
-    width: calc(100% - 40px); /* Ajustement de la largeur en prenant en compte la bordure et le padding */
-}
+/*form {*/
+/*    max-width: 600px;*/
+/*    margin: 20px auto;*/
+/*    padding: 20px;*/
+/*    background-color: #fff; !* Fond blanc *!*/
+/*    border: 2px solid #6B92A4; !* Bordure avec une couleur spécifiée *!*/
+/*    border-radius: 15px; !* Rayon pour des coins arrondis *!*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); !* Ombre pour un effet de profondeur *!*/
+/*    display: block;*/
+/*    width: calc(100% - 40px); !* Ajustement de la largeur en prenant en compte la bordure et le padding *!*/
+/*}*/
 
 
 label {
@@ -131,52 +160,52 @@ label {
     margin-bottom: 5px;
 }
 
-input[type='date'],
-input[type='text'],
-input[type='password'],
-input[type='number'],
-input[type='email'],
-select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-bottom: 1px solid darkgrey;
-    background-color: rgba(253, 210, 19, 0.3);
-}
+/*input[type='date'],*/
+/*input[type='text'],*/
+/*input[type='password'],*/
+/*input[type='number'],*/
+/*input[type='email'],*/
+/*select {*/
+/*    width: 100%;*/
+/*    padding: 10px;*/
+/*    margin-bottom: 20px;*/
+/*    border: none;*/
+/*    border-bottom: 1px solid darkgrey;*/
+/*    background-color: rgba(253, 210, 19, 0.3);*/
+/*}*/
 
-button {
-    background-color: #6B92A4; /* Couleur de fond */
-    color: white; /* Texte blanc pour contraste */
-    border: none;
-    border-radius: 15px;
-    padding: 15px 60px;
-    margin: 15px auto;
-    display: block;
-    width: calc(100% ); /* Largeur adaptée */
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
+/*button {*/
+/*    background-color: #6B92A4; !* Couleur de fond *!*/
+/*    color: white; !* Texte blanc pour contraste *!*/
+/*    border: none;*/
+/*    border-radius: 15px;*/
+/*    padding: 15px 60px;*/
+/*    margin: 15px auto;*/
+/*    display: block;*/
+/*    width: calc(100% ); !* Largeur adaptée *!*/
+/*    cursor: pointer;*/
+/*    font-weight: bold;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
 
-button:hover {
-    background-color: #5a7b8c; /* Changement de couleur au survol */
-}
+/*button:hover {*/
+/*    background-color: #5a7b8c; !* Changement de couleur au survol *!*/
+/*}*/
 
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: rgb(112, 127, 184);
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-}
+/*.btn {*/
+/*    display: inline-block;*/
+/*    padding: 10px 20px;*/
+/*    background-color: #28a745;*/
+/*    color: rgb(112, 127, 184);*/
+/*    border-radius: 4px;*/
+/*    text-decoration: none;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.btn:hover {
-    background-color: #218838;
-}
+/*.btn:hover {*/
+/*    background-color: #218838;*/
+/*}*/
 
 .text-danger {
     color: #dc3545;
@@ -194,10 +223,10 @@ button:hover {
 }
 
 /* Contact Section Styling */
-.bg-warning {
-    background-color: #FFDAB9; /* Lighter orange background for contact section */
-    padding: 20px 0;
-}
+/*.bg-warning {*/
+/*    background-color: #FFDAB9; !* Lighter orange background for contact section *!*/
+/*    padding: 20px 0;*/
+/*}*/
 
 /* Style for each contact item
 .bg-warning .m-3 {
@@ -205,9 +234,9 @@ button:hover {
 }
 */
 /* Last Contact Item Without Bottom Border */
-.bg-warning .m-3:last-child {
-    border-bottom: none;
-}
+/*.bg-warning .m-3:last-child {*/
+/*    border-bottom: none;*/
+/*}*/
 
 /* Styling for SVG Icons */
 .bg-warning svg {
@@ -216,11 +245,11 @@ button:hover {
 }
 
 /* Responsive Design for smaller screens */
-@media (max-width: 768px) {
-    .bg-warning .m-3 {
-        width: 90%; /* Adjust width on smaller screens */
-    }
-}
+/*@media (max-width: 768px) {*/
+/*    .bg-warning .m-3 {*/
+/*        width: 90%; !* Adjust width on smaller screens *!*/
+/*    }*/
+/*}*/
 /* General Navbar Styling */
 .navbar {
     background-color: #f8f9fa; /* Light background color */
@@ -243,46 +272,42 @@ button:hover {
     color: #333; /* Dark text color for visibility */
     transition: border-bottom 0.3s; /* Smooth transition for underline effect */
     padding-bottom: 0.25rem; /* Space between text and underline */
+    width: auto;
 }
 
 .nav-link:hover, .nav-link:focus {
     color: #e36f20; /* Highlight color on hover or focus */
-    border-bottom: 2px solid #e36f20; /* Underline effect */
+    border-bottom: 2px solid #7180B9; /* Underline effect */
     text-decoration: none; /* Remove default text decoration */
 }
 
-/* Adjustments for Authenticated User Section */
-.dep {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Spacing between username and logout button */
-}
+
 
 .dep p {
     margin-bottom: 0; /* Remove default margin */
 }
 
 /* Logout Button Styling */
-input[type="submit"] {
-    background: #7180B9;
-    color: #ffffff;
-    padding: 0.25rem 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: color 0.3s;
-}
+/*input[type="submit"] {*/
+/*    background: #7180B9;*/
+/*    color: #ffffff;*/
+/*    padding: 0.25rem 0.5rem;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    transition: color 0.3s;*/
+/*}*/
 
-input[type="submit"]:hover {
-    background-color: rgba(23, 23, 56, 0.9);
-    color: #ffffff; /* Darker color on hover */
-}
+/*input[type="submit"]:hover {*/
+/*    background-color: rgba(23, 23, 56, 0.9);*/
+/*    color: #ffffff; !* Darker color on hover *!*/
+/*}*/
 
 /* Responsive Design Adjustments */
-@media (max-width: 768px) {
-    .navbar-nav {
-        margin-right: 0; /* Adjust right margin on smaller screens */
-    }
-}
+/*@media (max-width: 768px) {*/
+/*    .navbar-nav {*/
+/*        margin-right: 0; !* Adjust right margin on smaller screens *!*/
+/*    }*/
+/*}*/
 
 
 
@@ -296,25 +321,25 @@ input[type="submit"]:hover {
     align-items: center;
 }
 
-.dec {
-    background-color: transparent; /* Fond initial transparent */
-    border: none;
-    color: black; /* Couleur du texte */
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 16px;
-    border-radius: 8px; /* Coins légèrement arrondis */
-    cursor: pointer;
-    margin-left: auto;
-    margin-right: 0;
-    transition: background-color 0.5s ease; /* Transition douce pour le fond */
-}
+/*.dec {*/
+/*    background-color: transparent; !* Fond initial transparent *!*/
+/*    border: none;*/
+/*    color: black; !* Couleur du texte *!*/
+/*    padding: 15px 32px;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    display: block;*/
+/*    font-size: 16px;*/
+/*    border-radius: 8px; !* Coins légèrement arrondis *!*/
+/*    cursor: pointer;*/
+/*    margin-left: auto;*/
+/*    margin-right: 0;*/
+/*    transition: background-color 0.5s ease; !* Transition douce pour le fond *!*/
+/*}*/
 
-.dep-dec:hover {
-    background-color: rgba(255, 160, 122, 0.5); /* Couleur orange claire semi-transparente au survol */
-}
+/*.dep-dec:hover {*/
+/*    background-color: rgba(255, 160, 122, 0.5); !* Couleur orange claire semi-transparente au survol *!*/
+/*}*/
 
 /* Overriding padding for the Bootstrap navbar */
 .navbar {
@@ -323,13 +348,13 @@ input[type="submit"]:hover {
 .nav-link {
     color:black!important;
 }
-body, .navbar, .btn, .form-control, .card {
-    font-family: 'Lato', sans-serif !important;
-}
-.row>*  {
-    text-align: center!important; /* Centre le texte */
-}
-.p-4 {
-    text-align: center!important; /* Centre le texte */
-}
+/*body, .navbar, .btn, .form-control, .card {*/
+/*    font-family: 'Lato', sans-serif !important;*/
+/*}*/
+/*.row>*  {*/
+/*    text-align: center!important; !* Centre le texte *!*/
+/*}*/
+/*.p-4 {*/
+/*    text-align: center!important; !* Centre le texte *!*/
+/*}*/
 

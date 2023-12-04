@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <nav class="navbar navbar-expand-lg navbar-light shadow navbar-bg">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home"><img src="/images/logo.png" alt="Logo sunset" width="153"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
                 </ul>
                             <div class="dep" sec:authorize="isAuthenticated()" >
                                 <p> <th:block sec:authorize="isAuthenticated()" th:text="${#authentication.getPrincipal().username}"></th:block></p>
-                                <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}" >
+                                <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}" class="m-1">
                                         <input type="submit" value="Deconnection" class="border-0 dec">
                                 </form>
                             </div>

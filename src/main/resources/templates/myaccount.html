@@ -67,33 +67,33 @@
                 </div>
                 <div class="modal-body">
                             <form th:action="@{/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
-                                <input type="hidden" th:field="*{id}" />
+                                <input type="hidden" th:field="*{id}" class="w-100"/>
 
-                                <label>Nouveau Nom:</label>
-                                <input type="text" th:field="*{lastname}" />
+                                <label for="lastname" class="label">Nom:</label>
+                                <input type="text" th:field="*{lastname}" id="lastname" name="lastname" class="w-100 border-0 border-bottom mb-2"/>
 
-                                <label>Nouveau Prénom:</label>
-                                <input type="text" th:field="*{firstname}" />
+                                <label for="firstname" class="label">Prénom:</label>
+                                <input type="text" th:field="*{firstname}" id="firstname" name="firstname" class="w-100 border-0 border-bottom mb-2"/>
 
-                                <label>Nouveau mail:</label>
-                                <input type="email" th:field="*{email}" />
+                                <label for="email" class="label">Mail:</label>
+                                <input type="email" th:field="*{email}" id="email" name="email" class="w-100 border-0 border-bottom mb-2"/>
 
-                                <label>Nouveau numero rue:</label>
-                                <input type="number" th:field="*{street_number}" />
+                                <label for="street_number" class="label">Numéro rue:</label>
+                                <input type="number" th:field="*{street_number}" id="street_number" name="street_number" class="w-100 border-0 border-bottom mb-2"/>
 
-                                <label>Nouveau non de rue:</label>
-                                <input type="text" th:field="*{street_name}" />
+                                <label for="street_name" class="label">Non de rue:</label>
+                                <input type="text" th:field="*{street_name}" id="street_name" name="street_name" class="w-100 border-0 border-bottom mb-2"/>
 
-                                <label>Nouveau code postal:</label>
-                                <input type="text" th:field="*{zip_code}" />
+                                <label for="zipcode" class="label">Code postal:</label>
+                                <input type="text" th:field="*{zip_code}" id="zipcode" name="zipcode" class="w-100 border-0 border-bottom mb-2"/>
 
-                                <label>Nouveau pays:</label>
-                                <input type="text" th:field="*{country}" />
+                                <label for="country" class="label">Pays:</label>
+                                <input type="text" th:field="*{country}" id="country" name="country" class="w-100 border-0 border-bottom mb-2"/>
 
-                                <label>Nouveau mot de passe:</label>
-                                <input type="password" th:field="*{password}" required />
+                                <label for="password" class="label">Mot de passe:</label>
+                                <input type="password" th:field="*{password}" required id="password" name="password" class="w-100 border-0 border-bottom" placeholder="********"/>
 
-                                <button type="submit">Enregistrer les modifications</button>
+                                <button class="btn btn-outline-warning w-100 mt-3">Enregistrer les modifications</button>
                             </form>
                 </div>
             </div>
@@ -113,10 +113,10 @@
             <button class="nav-link text-primary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#inProcess" type="button" role="tab" aria-controls="profile" aria-selected="false">Mes reservations en attente</button>
         </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content bg-content" id="myTabContent">
 
         <div class="tab-pane fade show active" id="isOk" role="tabpanel" aria-labelledby="home-tab">
-            <h2 class="m-5">Reservations confirmées</h2>
+            <h2 class="m-5 pt-3">Reservations confirmées</h2>
 
             <div th:each="command, commandIndex : ${commands}" th:if="${command.getUser().getId() == user.getId()}">
                 <!-- Check if there are any reservations that are not accepted -->
@@ -153,15 +153,18 @@
                             </p>
                         </div>
                         <div>
-                            <a th:href="@{/panier(total=${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())})}" class="btn btn-dark">Proceder au paiement</a>
+                            <a th:if="${!command.getPayment()}" th:href="@{/panier(total=${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())})}" class="btn btn-danger">Proceder au paiement</a>
+                            <a th:if="${command.getPayment()}">
+                                <a th:href="@{/pdf/{command}(command=${command.getId()})}" class="btn btn-outline-warning">Télécharger une Facture</a>
+                            </a>
                         </div>
                     </div>
                 </th:block>
             </div>
         </div>
 
-        <div class="tab-pane fade show active" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
-            <h2 class="m-5">Reservations en attente</h2>
+        <div class="tab-pane fade show" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
+            <h2 class="m-5 pt-3">Reservations en attente</h2>
 
             <div th:each="command, commandIndex : ${commands}" th:if="${command.getUser().getId() == user.getId()}">
                 <!-- Check if there are any reservations that are not accepted -->

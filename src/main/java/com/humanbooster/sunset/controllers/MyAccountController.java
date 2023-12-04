@@ -4,9 +4,13 @@ import com.humanbooster.sunset.models.Command;
 import com.humanbooster.sunset.models.Reservation;
 import com.humanbooster.sunset.models.User;
 import com.humanbooster.sunset.services.CommandService;
+import com.humanbooster.sunset.services.PdfService;
 import com.humanbooster.sunset.services.ReservationService;
 import com.humanbooster.sunset.services.UserService;
+import com.itextpdf.text.DocumentException;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -20,6 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Controller
@@ -33,6 +41,9 @@ public class MyAccountController {
 
     @Autowired
     CommandService commandService;
+
+    @Autowired
+    PdfService pdfService;
 
     @RequestMapping("/myaccount")
     public ModelAndView myAccount(Model model) {
@@ -83,6 +94,29 @@ public class MyAccountController {
 
     }
 
+    @RequestMapping("pdf/{command}")
+    public void pdf(@PathVariable(required = false) Command command, HttpServletResponse httpServletResponse) throws DocumentException, IOException, DocumentException {
+
+        if(command == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Facture impossible");
+        }
+
+        this.pdfService.generatePdfFromHtml(command);
+
+        InputStream inputStream = new FileInputStream(
+                new File("src/main/resources/static/pdf/facture.pdf")
+        );
+
+        IOUtils.copy(inputStream, httpServletResponse.getOutputStream());
+
+        httpServletResponse.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename="+command.getId()+".pdf";
+
+        httpServletResponse.setHeader(headerKey, headerValue);
+        httpServletResponse.flushBuffer();
+    }
 
 
 }

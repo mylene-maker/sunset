@@ -5,13 +5,13 @@
 
 
     <div th:insert="~{parts/style_script}"></div>
-    <title>Accueil</title>
+    <title>Formulaire de Reservation</title>
 </head>
 <body>
 <header th:include="~{parts/header :: header}"></header>
 
-<div class="formResa">
-    <h1>Formulaire de reservation</h1>
+<div class="container w-75 d-flex flex-column justify-content-center border-1 shadow mt-5">
+    <h1 class="m-5">Formulaire de reservation</h1>
 
     <form th:object="${reservationForm}" method="post">
 
@@ -24,18 +24,18 @@
 
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-        <div>
+        <div class="d-flex justify-content-between">
             <label>Date de debut</label>
-            <input type="date" th:field="*{dateStart}"/>
+            <input type="date" th:field="*{dateStart}" class="btn w-70"/>
             <span th:if="${#fields.hasErrors('dateStart')}" th:errors="*{dateStart}" class="text-danger"></span>
         </div>
-        <div>
+        <div class="d-flex justify-content-between">
             <label>Date de fin</label>
-            <input type="date" th:field="*{dateEnd}"/>
+            <input type="date" th:field="*{dateEnd}" class="btn w-70"/>
             <span th:if="${#fields.hasErrors('dateEnd')}" th:errors="*{dateEnd}" class="text-danger"></span>
         </div>
 
-        <div id="collectionEquipment" class="bg-primary p-3 text-white">
+        <div id="collectionEquipment" class="p-3 text-white">
             <div class="collectionForm" th:each="resa, state : ${reservationForm.emplacements}" >
 
                 <div>
@@ -43,14 +43,14 @@
 
                     <div>
                         <label>File</label>
-                        <select th:name="'items_'+${state.index}+'_file'">
+                        <select th:name="'items_'+${state.index}+'_file'" class="bg-light w-100 p-3">
                             <option th:each="i: ${#numbers.sequence(1, 8)}" th:value="${i}" th:text="${i}"></option>
                         </select>
                     </div>
 
                     <div>
                         <label>Equipement</label>
-                        <select th:name="'items_'+${state.index}+'_equipment'">
+                        <select th:name="'items_'+${state.index}+'_equipment'" class="bg-light w-100 p-3">
                             <option th:selected="${resa.getEquipment()=='UN_LIT'}" th:value="'UN_LIT'">Un lit</option>
                             <option th:selected="${resa.getEquipment()=='DEUX_LITS'}" th:value="'DEUX_LITS'">2 lits</option>
                             <option th:selected="${resa.getEquipment()=='UN_FAUTEUIL'}" th:value="'UN_FAUTEUIL'">Un fauteuil</option>
@@ -62,14 +62,15 @@
             </div>
         </div>
 
-        <a class="btn btn-outline-info m-2" id="addEmplacementButton">Ajouter un emplacement</a>
+        <a class="btn btn-outline-info w-100 mt-3 mb-3" id="addEmplacementButton">Ajouter un emplacement</a>
 
         <div>
-            <label>Remarque</label>
-            <input type="text" th:field="*{remarque}"/>
+<!--            <label>Remarque</label>-->
+            <textarea type="text" th:field="*{remarque}" placeholder="Vos remarques..." class="w-100"></textarea>
+
             <span th:if="${#fields.hasErrors('remarque')}" th:errors="*{remarque}" class="text-danger"></span>
         </div>
-        <button type="submit">Reserver</button>
+        <button type="submit" class="btn btn-dark w-100 mt-3 ">Reserver</button>
     </form>
 
 </div>

@@ -26,10 +26,11 @@ $("#addEmplacementButton").click(function () {
     newDiv = newDiv.replace('Parassol ' + parseInt(index + 1), 'Parassol ' + parseInt(index + 2));
 
     // Add a delete button
-    newDiv = '<div class="collectionForm">' + newDiv + '<button class="deleteEmplacementButton" type="button">Supprimer l\'emplacement</button></div>';
+    newDiv = '<div class="collectionForm">' + newDiv + '<button class="deleteEmplacementButton btn btn-danger mt-1" type="button">Supprimer l\'emplacement</button></div>';
 
     // Add this new div to the collection
     $('#collectionEquipment').append(newDiv);
+
 });
 
 // Add a click event for the delete button
