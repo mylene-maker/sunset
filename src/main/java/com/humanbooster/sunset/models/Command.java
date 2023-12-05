@@ -25,20 +25,25 @@ public class Command {
     @ManyToOne
     @JoinColumn(nullable = false)
     private User user;
+    @OneToOne
+    @JoinColumn(name = "payment_order_id")
+    private PaymentOrder payementOrder;
 
-    public Command(@NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user) {
+    public Command(@NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, PaymentOrder payementOrder) {
         this.payment = payment;
         this.remarque = remarque;
         this.reservations = reservations;
         this.user = user;
+        this.payementOrder = payementOrder;
     }
 
-    public Command(long id, @NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user) {
+    public Command(long id, @NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, PaymentOrder payementOrder) {
         this.id = id;
         this.payment = payment;
         this.remarque = remarque;
         this.reservations = reservations;
         this.user = user;
+        this.payementOrder = payementOrder;
     }
 
     public Command() {

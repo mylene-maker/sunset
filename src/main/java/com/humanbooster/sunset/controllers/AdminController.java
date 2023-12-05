@@ -45,10 +45,9 @@ public class AdminController {
 
     @RequestMapping("/reject/{reservationId}")
     public String rejectReservation(@PathVariable Long reservationId) {
-        // Appeler le service pour refuser la réservation
+
         reservationService.rejectReservation(reservationId);
 
-        // Rediriger vers la page d'administration ou une autre page appropriée
         return "redirect:/admin";
     }
 }

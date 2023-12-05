@@ -119,6 +119,7 @@
             <h2 class="m-5 pt-3">Reservations confirmées</h2>
 
             <div th:each="command, commandIndex : ${commands}" th:if="${command.getUser().getId() == user.getId()}">
+
                 <!-- Check if there are any reservations that are not accepted -->
                 <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasAcceptedReservations(command.getReservations())}">
 
