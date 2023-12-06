@@ -35,7 +35,7 @@
             <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasAcceptedReservations(command.getReservations())}">
 
                 <div class="card m-5 p-3">
-                    <p><strong>Commande n° :</strong> <span th:text="${commandIndex.index}"></span></p>
+                    <p><strong>Commande n° :</strong> <span th:text="${commandIndex.index + 1}"></span></p>
                     <p><strong>Client :</strong> <span th:text="${command.getCustomer().getLastname()}"></span></p>
                     <p><strong>Remarque Clients :</strong> <span th:text="${command.getRemarque()}"></span></p>
 
@@ -71,7 +71,7 @@
             <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasUnacceptedReservations(command.getReservations())}">
 
             <div class="card m-5 p-3">
-                    <p><strong>Commande n° :</strong> <span th:text="${commandIndex.index}"></span></p>
+                    <p><strong>Commande n° :</strong> <span th:text="${commandIndex.index + 1}"></span></p>
                     <p><strong>Client :</strong> <span th:text="${command.getCustomer().getLastname()}"></span></p>
                     <p><strong>Remarque Clients :</strong> <span th:text="${command.getRemarque()}"></span></p>
 

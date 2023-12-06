@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Facture</title>
+</head>
+
+<body>
+<h1 th:utext=" 'Facture de la commande n°'+${command.getId()}"></h1>
+
+<section class="d-flex justify-content-around">
+    <div class="card-body">
+        <h4 class="card-title" th:utext=" 'Nom-Prénom : '+${command.getCustomer().getLastname() + ' ' + command.getCustomer().getFirstname()}" ></h4>
+        <p class="card-text" th:utext=" 'Adresse : '+${command.getCustomer().street_number + ' ' + command.getCustomer().street_name}"></p>
+        <p class="card-text" th:utext=" ${command.getCustomer().zip_code + ' ' + command.getCustomer().country}"></p>
+        <p class="card-text" th:utext=" 'Email : '+${command.getCustomer().getEmail()}"></p>
+    </div>
+
+    <div>
+        <p>Societe - Sunset Beach</p>
+        <p>Adresse : 54 rue de la plage</p>
+        <p>MONTPELLIER - 34788</p>
+        <p>Tel : +33 625458425</p>
+    </div>
+</section>
+<section>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Emplacement</th>
+            <th scope="col">Equipement</th>
+            <th scope="col">Prix Unitaire TTC</th>
+        </tr>
+        </thead>
+        <tbody th:each="reservation : ${command.getReservations()}">
+        <tr>
+            <td><p th:utext="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></p></td>
+            <td><p th:utext="${reservation.getLane()}"></p></td>
+            <td><p th:utext="${reservation.getEquipment()}"></p></td>
+            <td><span th:text="${T(com.humanbooster.sunset.utils.ReservationUtils).getPriceByLane(reservation.getLane()) + ' €'}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<section>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Prix Total TTC</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><span th:text="${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())}"></span> €</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+
+</body>
+</html>

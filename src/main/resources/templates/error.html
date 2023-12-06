@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Erreur Paiement</title>
+    <div th:insert="~{parts/style_script}"></div>
+</head>
+<body>
+<div class="container-fluid d-flex justify-content-around align-items-center vh-100">
+    <img src="/images/parasol.jpg" alt="image de parasol" width="250" height="250">
+   <div class="text">
+       <h1 class="label">Ooops...Toutes nos excuses!</h1>
+       <p>Il y a  eu une erreur lors de votre demande. Veuillez reessayer plus tard ! </p>
+       <a href="/home" class="btn btn-dark">Revenir a la page d'accueil</a>
+   </div>
+</div>
+</body>
+</html>

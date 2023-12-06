@@ -124,7 +124,7 @@
                 <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasAcceptedReservations(command.getReservations())}">
 
                     <div class="card m-5 p-3">
-                        <p><span>Commande n° </span> <span th:text="${commandIndex.index}"></span> <span>confirmé !</span></p>
+                        <p><span>Commande n° </span> <span th:text="${commandIndex.index + 1}"></span> <span>confirmé !</span></p>
 
                         <div class="">
                             <div >
@@ -172,7 +172,7 @@
                 <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasUnacceptedReservations(command.getReservations())}">
 
                     <div class="card m-5 p-3">
-                        <p><span>Commande n° </span> <span th:text="${commandIndex.index}"></span> <span>est en cours de traitement !</span></p>
+                        <p><span>Commande n° </span> <span th:text="${commandIndex.index + 1}"></span> <span>est en cours de traitement !</span></p>
 
                         <div class="">
                             <div >
