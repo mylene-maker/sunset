@@ -12,7 +12,6 @@ public class SecurityController {
     public ModelAndView login(){
         ModelAndView mv = new ModelAndView("login");
 
-
         return mv;
     }
 

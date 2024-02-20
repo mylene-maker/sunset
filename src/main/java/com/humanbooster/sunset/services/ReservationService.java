@@ -142,7 +142,6 @@ public class ReservationService {
         }
 
     }
-
     public void acceptReservation(Long reservationId) {
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
 
@@ -160,6 +159,15 @@ public class ReservationService {
             Reservation reservation = optionalReservation.get();
 
 //            reservationRepository.delete(reservation);
+        }
+    }
+
+    public void editReservation(Long reservationId, int column) {
+        Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
+        if (optionalReservation.isPresent()) {
+            Reservation reservation = optionalReservation.get();
+            reservation.setColumn(column);
+            reservationRepository.save(reservation);
         }
     }
 

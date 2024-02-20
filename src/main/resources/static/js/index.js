@@ -1,22 +1,3 @@
-//     // add emplacements
-//     $("#addEmplacementButton").click(function(){
-//     let index = $('.collectionForm').length - 1;
-//     divToCopy = $('.collectionForm').last();
-//
-//     newDiv = divToCopy.html().replace('name="items_'+index+'_file"', 'name="items_'+parseInt(index+1)+'_file"');
-//     newDiv = newDiv.replace('name="items_'+index+'_equipment"', 'name="items_'+parseInt(index+1)+'_equipment"');
-//     newDiv = newDiv.replace('Parassol '+parseInt(index+1), 'Parassol '+parseInt(index+2));
-//
-//     // J'ajoute une nouvelle div qui contient le nouvel emplacement
-//     newDiv = '<div class="collectionForm">'+newDiv+'</div>';
-//
-//
-//     // J'ajoute cette nouvelle div à ma collection
-//     $('#collectionEquipment').append(newDiv);
-//
-// })
-
-
 $("#addEmplacementButton").click(function () {
     let index = $('.collectionForm').length - 1;
     divToCopy = $('.collectionForm').last();
@@ -49,3 +30,13 @@ $(document).ready(function () {
     })
 });
 
+// Modal add location
+
+$(document).ready(function() {
+    $(".showModalEmplacement").click(function () {
+        $("#myModalEmplacement").modal('show');
+    });
+    $("#close").click(function (){
+        $("#myModalEmplacement").modal('hide')
+    })
+});

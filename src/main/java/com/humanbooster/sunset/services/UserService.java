@@ -1,13 +1,13 @@
 package com.humanbooster.sunset.services;
 
 import com.humanbooster.sunset.models.User;
-import com.humanbooster.sunset.repositories.RoleRepository;
 import com.humanbooster.sunset.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 
 @Service
@@ -38,4 +38,5 @@ public class UserService{
         }
         return this.userRepository.save(user);
     }
+
 }

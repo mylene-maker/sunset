@@ -4,9 +4,11 @@ package com.humanbooster.sunset.services;
 import com.humanbooster.sunset.models.Command;
 import com.humanbooster.sunset.models.CompletedOrder;
 import com.humanbooster.sunset.models.PaymentOrder;
+import com.humanbooster.sunset.models.User;
 import com.humanbooster.sunset.repositories.CommandRepository;
 import com.humanbooster.sunset.repositories.CompleteOrderRepository;
 import com.humanbooster.sunset.repositories.PaymentOrderRepository;
+import com.humanbooster.sunset.repositories.UserRepository;
 import com.paypal.core.PayPalHttpClient;
 import com.paypal.http.HttpResponse;
 import com.paypal.orders.*;
@@ -35,6 +37,7 @@ public class PaypalService {
     @Autowired
     CommandRepository commandRepository;
 
+
     public PaymentOrder createPayment(BigDecimal fee) {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.checkoutPaymentIntent("CAPTURE");
@@ -58,9 +61,6 @@ public class PaypalService {
             PaymentOrder paymentOrder = new PaymentOrder(order.id(), "success", redirectUrl );
             this.paymentOrderRepository.save(paymentOrder);
 
-            Command command = new Command();
-            this.commandRepository.save(command);
-
             return paymentOrder;
         }catch (IOException e){
             return new PaymentOrder("error");
@@ -75,8 +75,6 @@ public class PaypalService {
             if (httpResponse.result().status() != null){
                 completedOrder = new CompletedOrder("success", token);
 //                setPayment true here <--------------
-
-
             }else {
                 completedOrder = new CompletedOrder("error");
             }

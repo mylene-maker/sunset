@@ -1,6 +1,5 @@
 package com.humanbooster.sunset.controllers;
 
-import com.humanbooster.sunset.models.Command;
 import com.humanbooster.sunset.services.CommandService;
 import com.humanbooster.sunset.services.PaypalService;
 import com.humanbooster.sunset.services.ReservationService;
@@ -46,7 +45,6 @@ public class PanierController {
     public ModelAndView capturePayment(@RequestParam("token") String token){
         ModelAndView mv = new ModelAndView("success");
         paypalService.capturePayment(token);
-
         return mv;
     }
 

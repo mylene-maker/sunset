@@ -141,7 +141,7 @@
                                     <tr>
                                         <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></td>
                                         <td><span th:text="${reservation.getEquipment()}"></span></td>
-                                        <td><span th:text="${reservation.getLane()}"></span></td>
+                                        <td><span th:text="${reservation.getLane()} + '-' + ${reservation.getColumn()}"></span></td>
                                         <td><span th:text="${T(com.humanbooster.sunset.utils.ReservationUtils).getPriceByLane(reservation.getLane()) + ' €'}"></span></td>
                                     </tr>
                                     </tbody>
@@ -187,8 +187,8 @@
                                     <tbody th:each="reservation, iterStat : ${command.getReservations()}" th:if="${reservation.isAccepted() == false}">
                                     <tr>
                                         <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></td>
-                                        <td><span th:text="${reservation.getEquipment()}"></span></td>
-                                        <td><span th:text="${reservation.getLane()}"></span></td>
+                                        <td><span th:text="${reservation.getEquipment()} "></span></td>
+                                        <td><span th:text="${reservation.getLane()}+ '-' + ${reservation.getColumn()}"></span></td>
                                     </tr>
                                     </tbody>
                                 </table>

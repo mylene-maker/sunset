@@ -25,6 +25,7 @@ public class Command {
     @ManyToOne
     @JoinColumn(nullable = false)
     private User user;
+
     @OneToOne
     @JoinColumn(name = "payment_order_id")
     private PaymentOrder payementOrder;
