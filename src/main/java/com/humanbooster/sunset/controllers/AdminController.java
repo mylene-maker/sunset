@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,9 +33,7 @@ public class AdminController {
     ModelAndView adminHome(Model model){
 
         List<Command> commands = commandService.findAll();
-//        List<Reservation> reservations = reservationService.findAll();
         model.addAttribute("commands", commands);
-//        model.addAttribute("reservations", reservations);
         ModelAndView mv = new ModelAndView("admin");
 
         return mv;

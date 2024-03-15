@@ -141,7 +141,7 @@
                                     <tr>
                                         <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></td>
                                         <td><span th:text="${reservation.getEquipment()}"></span></td>
-                                        <td><span th:text="${reservation.getLane()} + '-' + ${reservation.getColumn()}"></span></td>
+                                        <td><span th:text=" 'Ligne : ' + ${reservation.getLane()} + ' -' + ' Place : ' + ${reservation.getColumn()}"></span></td>
                                         <td><span th:text="${T(com.humanbooster.sunset.utils.ReservationUtils).getPriceByLane(reservation.getLane()) + ' €'}"></span></td>
                                     </tr>
                                     </tbody>
@@ -150,11 +150,11 @@
                         </div>
                         <div>
                             <p>
-                                Prix total : <span th:text="${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())}"></span> €
+                                <strong>Prix total : <span th:text="${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())}"></span> € </strong>
                             </p>
                         </div>
                         <div>
-                            <a th:if="${!command.getPayment()}" th:href="@{/panier(total=${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())})}" class="btn btn-danger">Proceder au paiement</a>
+                            <a th:if="${!command.getPayment()}" th:href="@{/panier(total=${T(com.humanbooster.sunset.utils.ReservationUtils).calculateTotalPrice(command.getReservations())}, commandId=${command.getId()})}" class="btn btn-danger">Proceder au paiement</a>
                             <a th:if="${command.getPayment()}">
                                 <a th:href="@{/pdf/{command}(command=${command.getId()})}" class="btn btn-outline-warning">Télécharger une Facture</a>
                             </a>
@@ -201,16 +201,6 @@
     </div>
 
 </section>
-
-<!--<a sec:authorize="hasAnyRole('admin')" th:href="@{/admin}">Espace administrateur</a>-->
-
-<!--<a th:href="@{/reservation/new}"  th:action="@{/login}" class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">-->
-<!--    Faire une reservation-->
-<!--</a>-->
-
-<!--<form method="post" th:action="@{/logout}">-->
-<!--    <input type="submit" value="Me deconnecter">-->
-<!--</form>-->
 
 
 </body>

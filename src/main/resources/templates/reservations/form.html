@@ -10,10 +10,10 @@
 <body>
 <header th:include="~{parts/header :: header}"></header>
 
-<div class="container w-75 d-flex flex-column justify-content-center border-1 shadow mt-5">
+<div class="container w-75 d-flex flex-column justify-content-center border-1 shadow mt-5 rounded-4">
     <h1 class="m-5">Formulaire de reservation</h1>
 
-    <form th:object="${reservationForm}" method="post">
+    <form th:object="${reservationForm}" method="post" class="m-5">
 
         <div class = "form-group row ">
             <div class="col-sm-8">
@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <a class="btn btn-outline-info w-100 mt-3 mb-3" id="addEmplacementButton">Ajouter un emplacement</a>
+        <a class="btn btn-outline-info w-100 mt-3 mb-3 rounded-3" id="addEmplacementButton">Ajouter un emplacement</a>
 
         <div>
 <!--            <label>Remarque</label>-->
@@ -70,7 +70,7 @@
 
             <span th:if="${#fields.hasErrors('remarque')}" th:errors="*{remarque}" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-dark w-100 mt-3 ">Reserver</button>
+        <button type="submit" class="btn btn-dark w-25 mt-4 m-auto" id="btn-resa">Reserver</button>
     </form>
 
 </div>

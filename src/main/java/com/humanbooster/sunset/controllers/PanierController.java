@@ -1,5 +1,6 @@
 package com.humanbooster.sunset.controllers;
 
+import com.humanbooster.sunset.models.Command;
 import com.humanbooster.sunset.services.CommandService;
 import com.humanbooster.sunset.services.PaypalService;
 import com.humanbooster.sunset.services.ReservationService;
@@ -7,7 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/panier")
@@ -27,17 +28,20 @@ public class PanierController {
     CommandService commandService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView panier(@RequestParam(name = "total", required = false) BigDecimal totalPrice, Model model){
+    public ModelAndView panier(@RequestParam(name = "total", required = false) BigDecimal totalPrice, @RequestParam(name = "commandId", required = false) BigDecimal commandId, Model model){
+        List<Command> commands = commandService.findAll();
         model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("commandId", commandId);
+        model.addAttribute("commands", commands);
         ModelAndView mv = new ModelAndView("panier");
         return mv;
     }
 
     @RequestMapping(value = "/payment", method = RequestMethod.GET)
-    public void proceed(@RequestParam(name = "total", required = true) BigDecimal totalPrice, HttpServletResponse response) throws IOException{
+    public void proceed(@RequestParam(name = "total", required = true) BigDecimal totalPrice, @RequestParam(name = "commandId", required = false) Long commandId ,HttpServletResponse response) throws IOException{
         System.out.println("Prix total : " + totalPrice);
         response.sendRedirect(
-                paypalService.createPayment(totalPrice).getRedirectUrl()
+                paypalService.createPayment(totalPrice, commandId).getRedirectUrl()
         );
     }
 

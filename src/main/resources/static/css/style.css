@@ -86,28 +86,6 @@ h2, h3, h5, h6 {
     margin-bottom: 15px;
 }
 
-/* Button styling */
-/*.btn-outline-warning {*/
-/*    border-color: #ffc107;*/
-/*    color: #ffc107;*/
-/*}*/
-
-/*.btn-outline-warning:hover {*/
-/*    background-color: #ffc107;*/
-/*    color: #000;*/
-/*}*/
-
-/* Background and layout styles */
-/*.bg-secondary {*/
-/*    background-color: #6c757d;*/
-/*    color: #fff;*/
-/*}*/
-
-/*.bg-warning {*/
-/*    background-color: #ffc107;*/
-/*    color: #000;*/
-/*}*/
-
 /* SVG icon styles */
 svg {
     fill: #007bff; /* Example fill color */
@@ -122,90 +100,10 @@ svg {
     }
 }
 
-/* Pour le formulaire*/
-/*body {*/
-/*    font-family: 'Arial', sans-serif;*/
-/*    background-color: #f4f4f4;*/
-/*    color: #333;*/
-/*    line-height: 1.6;*/
-/*}*/
-
-/*header {*/
-/*    background-color: #ff9900;*/
-/*    color: #fff;*/
-/*    padding: 1rem 0;*/
-/*    text-align: center;*/
-/*}*/
-
-/*h1 {*/
-/*    text-align: center;*/
-/*    margin-top: 1rem;*/
-/*}*/
-
-/*form {*/
-/*    max-width: 600px;*/
-/*    margin: 20px auto;*/
-/*    padding: 20px;*/
-/*    background-color: #fff; !* Fond blanc *!*/
-/*    border: 2px solid #6B92A4; !* Bordure avec une couleur spécifiée *!*/
-/*    border-radius: 15px; !* Rayon pour des coins arrondis *!*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); !* Ombre pour un effet de profondeur *!*/
-/*    display: block;*/
-/*    width: calc(100% - 40px); !* Ajustement de la largeur en prenant en compte la bordure et le padding *!*/
-/*}*/
-
-
 label {
     display: block;
     margin-bottom: 5px;
 }
-
-/*input[type='date'],*/
-/*input[type='text'],*/
-/*input[type='password'],*/
-/*input[type='number'],*/
-/*input[type='email'],*/
-/*select {*/
-/*    width: 100%;*/
-/*    padding: 10px;*/
-/*    margin-bottom: 20px;*/
-/*    border: none;*/
-/*    border-bottom: 1px solid darkgrey;*/
-/*    background-color: rgba(253, 210, 19, 0.3);*/
-/*}*/
-
-/*button {*/
-/*    background-color: #6B92A4; !* Couleur de fond *!*/
-/*    color: white; !* Texte blanc pour contraste *!*/
-/*    border: none;*/
-/*    border-radius: 15px;*/
-/*    padding: 15px 60px;*/
-/*    margin: 15px auto;*/
-/*    display: block;*/
-/*    width: calc(100% ); !* Largeur adaptée *!*/
-/*    cursor: pointer;*/
-/*    font-weight: bold;*/
-/*    transition: background-color 0.3s ease;*/
-/*}*/
-
-/*button:hover {*/
-/*    background-color: #5a7b8c; !* Changement de couleur au survol *!*/
-/*}*/
-
-
-/*.btn {*/
-/*    display: inline-block;*/
-/*    padding: 10px 20px;*/
-/*    background-color: #28a745;*/
-/*    color: rgb(112, 127, 184);*/
-/*    border-radius: 4px;*/
-/*    text-decoration: none;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.btn:hover {*/
-/*    background-color: #218838;*/
-/*}*/
 
 .text-danger {
     color: #dc3545;
@@ -222,34 +120,13 @@ label {
     margin-bottom: 15px;
 }
 
-/* Contact Section Styling */
-/*.bg-warning {*/
-/*    background-color: #FFDAB9; !* Lighter orange background for contact section *!*/
-/*    padding: 20px 0;*/
-/*}*/
-
-/* Style for each contact item
-.bg-warning .m-3 {
-
-}
-*/
-/* Last Contact Item Without Bottom Border */
-/*.bg-warning .m-3:last-child {*/
-/*    border-bottom: none;*/
-/*}*/
-
 /* Styling for SVG Icons */
 .bg-warning svg {
     fill: #000000; /* Black color for icons */
     margin-bottom: 10px;
 }
 
-/* Responsive Design for smaller screens */
-/*@media (max-width: 768px) {*/
-/*    .bg-warning .m-3 {*/
-/*        width: 90%; !* Adjust width on smaller screens *!*/
-/*    }*/
-/*}*/
+
 /* General Navbar Styling */
 .navbar {
     background-color: #f8f9fa; /* Light background color */
@@ -287,30 +164,6 @@ label {
     margin-bottom: 0; /* Remove default margin */
 }
 
-/* Logout Button Styling */
-/*input[type="submit"] {*/
-/*    background: #7180B9;*/
-/*    color: #ffffff;*/
-/*    padding: 0.25rem 0.5rem;*/
-/*    border: none;*/
-/*    cursor: pointer;*/
-/*    transition: color 0.3s;*/
-/*}*/
-
-/*input[type="submit"]:hover {*/
-/*    background-color: rgba(23, 23, 56, 0.9);*/
-/*    color: #ffffff; !* Darker color on hover *!*/
-/*}*/
-
-/* Responsive Design Adjustments */
-/*@media (max-width: 768px) {*/
-/*    .navbar-nav {*/
-/*        margin-right: 0; !* Adjust right margin on smaller screens *!*/
-/*    }*/
-/*}*/
-
-
-
 /*success reservation*/
 
 .resaOk{
@@ -321,26 +174,6 @@ label {
     align-items: center;
 }
 
-/*.dec {*/
-/*    background-color: transparent; !* Fond initial transparent *!*/
-/*    border: none;*/
-/*    color: black; !* Couleur du texte *!*/
-/*    padding: 15px 32px;*/
-/*    text-align: center;*/
-/*    text-decoration: none;*/
-/*    display: block;*/
-/*    font-size: 16px;*/
-/*    border-radius: 8px; !* Coins légèrement arrondis *!*/
-/*    cursor: pointer;*/
-/*    margin-left: auto;*/
-/*    margin-right: 0;*/
-/*    transition: background-color 0.5s ease; !* Transition douce pour le fond *!*/
-/*}*/
-
-/*.dep-dec:hover {*/
-/*    background-color: rgba(255, 160, 122, 0.5); !* Couleur orange claire semi-transparente au survol *!*/
-/*}*/
-
 /* Overriding padding for the Bootstrap navbar */
 .navbar {
     padding: 0 !important;
@@ -348,13 +181,15 @@ label {
 .nav-link {
     color:black!important;
 }
-/*body, .navbar, .btn, .form-control, .card {*/
-/*    font-family: 'Lato', sans-serif !important;*/
-/*}*/
-/*.row>*  {*/
-/*    text-align: center!important; !* Centre le texte *!*/
-/*}*/
-/*.p-4 {*/
-/*    text-align: center!important; !* Centre le texte *!*/
-/*}*/
 
+#btn-login, #btn-resa{
+    background-color: #7180B9;
+    color: white;
+}
+
+.basket{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 70px;
+}

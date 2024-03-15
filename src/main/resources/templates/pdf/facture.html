@@ -9,18 +9,22 @@
 
 <section class="d-flex justify-content-around">
     <div class="card-body">
-        <h4 class="card-title" th:utext=" 'Nom-Prénom : '+${command.getCustomer().getLastname() + ' ' + command.getCustomer().getFirstname()}" ></h4>
+        <h3>Destinataire</h3>
+        <p class="card-title" th:utext="${command.getCustomer().getLastname() + ' ' + command.getCustomer().getFirstname()}" ></p>
         <p class="card-text" th:utext=" 'Adresse : '+${command.getCustomer().street_number + ' ' + command.getCustomer().street_name}"></p>
         <p class="card-text" th:utext=" ${command.getCustomer().zip_code + ' ' + command.getCustomer().country}"></p>
         <p class="card-text" th:utext=" 'Email : '+${command.getCustomer().getEmail()}"></p>
     </div>
 
     <div>
+        <h3>Emetteur : </h3>
         <p>Societe - Sunset Beach</p>
+        <p>Numero SIRET : 80009876600010</p>
         <p>Adresse : 54 rue de la plage</p>
         <p>MONTPELLIER - 34788</p>
         <p>Tel : +33 625458425</p>
     </div>
+
 </section>
 <section>
     <table class="table">

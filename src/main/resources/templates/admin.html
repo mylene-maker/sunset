@@ -15,24 +15,25 @@
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#validated" type="button"
+        <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#validated" type="button"
                 role="tab" aria-controls="home" aria-selected="true">Commandes validées
         </button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#inProcess" type="button"
+        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#inProcess" type="button"
                 role="tab" aria-controls="profile" aria-selected="false">Commande en attente
         </button>
     </li>
 </ul>
 
 <div class="tab-content bg-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="validated" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-pane fade show" id="validated" role="tabpanel" aria-labelledby="home-tab">
         <h2 class="m-5 pt-3">Reservation confirmées</h2>
 
         <div th:each="command, commandIndex : ${commands}" th:if="${command.getReservations() != null}">
             <!-- Check if there are any reservations that are accepted -->
-            <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasAcceptedReservations(command.getReservations())}">
+            <th:block
+                    th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasAcceptedReservations(command.getReservations())}">
 
                 <div class="card m-5 p-3">
                     <p><strong>Commande n° :</strong> <span th:text="${commandIndex.index + 1}"></span></p>
@@ -49,48 +50,165 @@
                                     <th scope="col">Emplacement</th>
                                 </tr>
                                 </thead>
-                                <tbody th:each="reservation, iterStat : ${command.getReservations()}" th:if="${reservation.isAccepted()}">
+                                <tbody th:each="reservation, iterStat : ${command.getReservations()}"
+                                       th:if="${reservation.isAccepted()}">
                                 <tr>
-                                    <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></td>
+                                    <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span>
+                                    </td>
                                     <td><span th:text="${reservation.getEquipment()}"></span></td>
-                                    <td><span th:text="${reservation.getLane()}+ '-' + ${reservation.getColumn()}"></span></td>
+                                    <td><span
+                                            th:text="${reservation.getLane()}+ '-' + ${reservation.getColumn()}"></span>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
-<!--                            <button type="button" class="btn btn-outline-warning showModalEmplacement" id="showModalEmplacement">-->
-<!--                                Attribuer un emplacement-->
-<!--                            </button>-->
-<!--                            <div class="modal" tabindex="-1" role="dialog" id="myModalEmplacement">-->
-<!--                                <div class="modal-dialog" role="document">-->
-<!--                                    <div class="modal-content">-->
-<!--                                        <div class="modal-header">-->
-<!--                                            <h5 class="modal-title">Attribuer un emplacement</h5>-->
-<!--                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close">-->
-<!--                                                <span aria-hidden="true">&times;</span>-->
-<!--                                            </button>-->
-<!--                                        </div>-->
-<!--&lt;!&ndash;                                        <div class="modal-body">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <a th:href="@{'/admin/edit/' + ${reservation.id}}">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <button class="btn btn-outline-warning">1</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                        </div>
+                    </div>
+                    <div th:each="reservation, iterStat : ${command.getReservations()}">
+                        <p><strong>Ajouter un emplacement sur la ligne <span th:text="${reservation.getLane()}"></span></strong></p>
+
+                        <div class="d-flex justify-content-between">
+                            <div>
+
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id + '/1'}}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit2/' + ${reservation.id} + '/2'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/3'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/4'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/5'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/6'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/7'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/8'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/9'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/10'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/11'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/12'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                            </div>
+                            <div >
+
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id + '/13'}}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit2/' + ${reservation.id} + '/14'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/15'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/16'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/17'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/18'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/19'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/20'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/21'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/22'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/23'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/24'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </th:block>
         </div>
     </div>
-    <div class="tab-pane fade show" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="tab-pane fade show active" id="inProcess" role="tabpanel" aria-labelledby="profile-tab">
         <h2 class="m-5 pt-3">Reservation en attente de traitement</h2>
 
         <div th:each="command, commandIndex : ${commands}" th:if="${command.getReservations() != null}">
             <!-- Check if there are any reservations that are not accepted -->
-            <th:block th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasUnacceptedReservations(command.getReservations())}">
+            <th:block
+                    th:if="${T(com.humanbooster.sunset.utils.ReservationUtils).hasUnacceptedReservations(command.getReservations())}">
 
-            <div class="card m-5 p-3">
+                <div class="card m-5 p-3">
                     <p><strong>Commande n° :</strong> <span th:text="${commandIndex.index + 1}"></span></p>
                     <p><strong>Client :</strong> <span th:text="${command.getCustomer().getLastname()}"></span></p>
                     <p><strong>Remarque Clients :</strong> <span th:text="${command.getRemarque()}"></span></p>
@@ -107,220 +225,159 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                                 </thead>
-                                <tbody th:each="reservation, iterStat : ${command.getReservations()}" th:if="${!reservation.isAccepted()}">
+                                <tbody th:each="reservation, iterStat : ${command.getReservations()}"
+                                       th:if="${!reservation.isAccepted()}">
                                 <tr>
-                                    <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span></td>
+                                    <td><span th:text="${#dates.format(reservation.getDate_to(), 'dd-MM-yyyy')}"></span>
+                                    </td>
                                     <td><span th:text="${reservation.getEquipment()}"></span></td>
-                                    <td><span th:text="${reservation.getLane()}+ '-' + ${reservation.getColumn()}"></span></td>
-                                    <td class="d-flex">
-                                            <a th:href="@{'/admin/accept/' + ${reservation.id}}">
-                                                <button class="btn btn-outline-warning">Accepter</button>
-                                            </a>
-                                            <a th:href="@{'/admin/reject/' + ${reservation.id}}">
-                                                <button class="btn btn-danger">Refuser</button>
-                                            </a>
+                                    <td><span
+                                            th:text=" 'Ligne : ' + ${reservation.getLane()}+ ' -' + ' Place : ' + ${reservation.getColumn()}"></span>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><strong>Ajouter un emplacement sur la  ligne <span th:text="${reservation.getLane()}"></span></strong></p>
-                                    </td>
-                                </tr>
-                                <tr class="d-flex">
                                     <td class="">
-                                        <div class="">
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id + '/1'}}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit2/' + ${reservation.id} + '/2'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/3'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/4'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/5'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/6'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/7'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/8'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/9'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/10'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/11'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/12'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/13'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/14'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/15'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/16'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/17'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/18'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div></div>
-                                    </td>
-                                    <td>
-                                        <div class="">
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/10'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/11'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/12'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/13'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/14'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/15'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/16'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/17'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/18'}">
-                                                    <button class="btn btn-info">⛱️</button>
-                                                </a>
-                                            </span>
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/28'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/29'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/30'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/31'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/32'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/33'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/34'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/35'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <a th:href="@{'/admin/edit/' + ${reservation.id} + '/36'}">-->
-<!--                                                    <button class="btn btn-info">⛱️</button>-->
-<!--                                                </a>-->
-<!--                                            </span>-->
-                                        </div>
+                                        <a th:href="@{'/admin/accept/' + ${reservation.id}}">
+                                            <button class="btn btn-outline-warning">Accepter</button>
+                                        </a>
+                                        <a th:href="@{'/admin/reject/' + ${reservation.id}}">
+                                            <button class="btn btn-danger">Refuser</button>
+                                        </a>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
+
+                        </div>
+                    </div>
+                    <div th:each="reservation, iterStat : ${command.getReservations()}">
+                        <p><strong>Ajouter un emplacement sur la ligne <span th:text="${reservation.getLane()}"></span></strong></p>
+
+                        <div class="d-flex justify-content-between">
+                            <div>
+
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id + '/1'}}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit2/' + ${reservation.id} + '/2'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/3'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/4'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/5'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/6'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/7'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/8'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/9'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/10'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/11'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/12'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                            </div>
+                            <div >
+
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id + '/13'}}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit2/' + ${reservation.id} + '/14'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/15'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/16'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/17'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/18'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/19'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/20'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/21'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/22'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/23'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a th:href="@{'/admin/edit/' + ${reservation.id} + '/24'}">
+                                        <button class="btn btn-info">⛱️</button>
+                                    </a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

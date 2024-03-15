@@ -33,6 +33,9 @@ public class Reservation implements Serializable {
     @ManyToOne
     private Command command;
 
+    @ManyToOne()
+    private Facture facture;
+
     public Reservation(int id, @NotNull(message = "Veuillez choisir la ligne") Integer lane, Integer column, Date date_to, @NotNull(message = "Veuillez indiquer si la commande est acceptée") boolean isAccepted, @NotNull(message = "Veuillez choisir une option") String equipment, Command command) {
         this.id = id;
         this.lane = lane;
@@ -110,5 +113,13 @@ public class Reservation implements Serializable {
 
     public void setCommand(Command command) {
         this.command = command;
+    }
+
+    public Facture getFacture() {
+        return facture;
+    }
+
+    public void setFacture(Facture facture) {
+        this.facture = facture;
     }
 }

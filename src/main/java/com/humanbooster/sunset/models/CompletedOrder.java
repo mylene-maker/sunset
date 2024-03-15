@@ -1,16 +1,20 @@
 package com.humanbooster.sunset.models;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 @Entity
-public class CompletedOrder {
+public class CompletedOrder implements Serializable {
     @Id
     private String payId;
 
     @Basic
     private String status;
+
+    @OneToOne
+    @JoinColumn(name = "command_id")
+    Command command;
 
     public CompletedOrder() {
     }
@@ -38,5 +42,13 @@ public class CompletedOrder {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Command getCommand() {
+        return command;
+    }
+
+    public void setCommand(Command command) {
+        this.command = command;
     }
 }

@@ -159,6 +159,7 @@ public class ReservationService {
             Reservation reservation = optionalReservation.get();
 
 //            reservationRepository.delete(reservation);
+//            If reject notify user with an email ??
         }
     }
 

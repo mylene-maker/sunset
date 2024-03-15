@@ -4,11 +4,9 @@ package com.humanbooster.sunset.services;
 import com.humanbooster.sunset.models.Command;
 import com.humanbooster.sunset.models.CompletedOrder;
 import com.humanbooster.sunset.models.PaymentOrder;
-import com.humanbooster.sunset.models.User;
 import com.humanbooster.sunset.repositories.CommandRepository;
 import com.humanbooster.sunset.repositories.CompleteOrderRepository;
 import com.humanbooster.sunset.repositories.PaymentOrderRepository;
-import com.humanbooster.sunset.repositories.UserRepository;
 import com.paypal.core.PayPalHttpClient;
 import com.paypal.http.HttpResponse;
 import com.paypal.orders.*;
@@ -19,7 +17,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 
 @Service
@@ -35,10 +32,14 @@ public class PaypalService {
     PaymentOrderRepository paymentOrderRepository;
 
     @Autowired
+    CommandService commandService;
+
+    @Autowired
     CommandRepository commandRepository;
 
+    private Command command;
 
-    public PaymentOrder createPayment(BigDecimal fee) {
+    public PaymentOrder createPayment(BigDecimal fee, Long commandId) {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.checkoutPaymentIntent("CAPTURE");
         AmountWithBreakdown amountWithBreakdown = new AmountWithBreakdown().currencyCode("EUR").value(fee.toString());
@@ -57,10 +58,10 @@ public class PaypalService {
                     .findFirst()
                     .orElseThrow(NoSuchElementException::new)
                     .href();
-
-            PaymentOrder paymentOrder = new PaymentOrder(order.id(), "success", redirectUrl );
+            PaymentOrder paymentOrder = new PaymentOrder(order.id(), "success", redirectUrl);
             this.paymentOrderRepository.save(paymentOrder);
-
+//            commandService.isPay(commandId, applicationContext.paymentToken());
+//            System.out.println("Voici le token du paiement : " + applicationContext.paymentToken());
             return paymentOrder;
         }catch (IOException e){
             return new PaymentOrder("error");
@@ -73,8 +74,7 @@ public class PaypalService {
         try{
             HttpResponse<Order> httpResponse = payPalHttpClient.execute(ordersCaptureRequest);
             if (httpResponse.result().status() != null){
-                completedOrder = new CompletedOrder("success", token);
-//                setPayment true here <--------------
+                completedOrder = new CompletedOrder(token, "success");
             }else {
                 completedOrder = new CompletedOrder("error");
             }

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "command")
@@ -27,24 +28,24 @@ public class Command {
     private User user;
 
     @OneToOne
-    @JoinColumn(name = "payment_order_id")
-    private PaymentOrder payementOrder;
+    @JoinColumn(name = "completed_order_id")
+    private CompletedOrder completedOrder;
 
-    public Command(@NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, PaymentOrder payementOrder) {
+    public Command(@NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, CompletedOrder completedOrder) {
         this.payment = payment;
         this.remarque = remarque;
         this.reservations = reservations;
         this.user = user;
-        this.payementOrder = payementOrder;
+        this.completedOrder = new CompletedOrder();
     }
 
-    public Command(long id, @NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, PaymentOrder payementOrder) {
+    public Command(long id, @NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, CompletedOrder completedOrder) {
         this.id = id;
         this.payment = payment;
         this.remarque = remarque;
         this.reservations = reservations;
         this.user = user;
-        this.payementOrder = payementOrder;
+        this.completedOrder = completedOrder;
     }
 
     public Command() {
@@ -107,4 +108,13 @@ public class Command {
     public void setId(long id) {
         this.id = id;
     }
+
+    public CompletedOrder getCompletedOrder() {
+        return completedOrder;
+    }
+
+    public void setCompletedOrder(CompletedOrder completedOrder) {
+        this.completedOrder = completedOrder;
+    }
+
 }
