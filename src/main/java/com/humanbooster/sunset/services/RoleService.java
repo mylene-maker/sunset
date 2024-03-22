@@ -18,8 +18,8 @@ public class RoleService {
 
     public Role findByRoleName(String roleName){ return this.roleRepository.findByRoleName(roleName);}
 
-    public void saveRole(Role user) {
-        roleRepository.save(user);
+    public void saveRole(Role roleName) {
+        roleRepository.save(roleName);
     }
 
 

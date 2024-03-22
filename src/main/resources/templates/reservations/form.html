@@ -65,7 +65,6 @@
         <a class="btn btn-outline-info w-100 mt-3 mb-3 rounded-3" id="addEmplacementButton">Ajouter un emplacement</a>
 
         <div>
-<!--            <label>Remarque</label>-->
             <textarea type="text" th:field="*{remarque}" placeholder="Vos remarques..." class="w-100"></textarea>
 
             <span th:if="${#fields.hasErrors('remarque')}" th:errors="*{remarque}" class="text-danger"></span>

@@ -14,8 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class SpringData {
-//    @Autowired
-//    BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public static void main(String[] args) {
 
@@ -25,18 +25,18 @@ public class SpringData {
     @Bean
     public CommandLineRunner dataLoader(UserService userService, RoleService roleService){
         return args->{
-//            Role roleAdmin = roleService.findByName("ADMIN");
-//            Role roleUser =  roleService.findByName("USER");
-//
-//            if(roleAdmin == null){
-//                roleAdmin = new Role("ADMIN");
-//                roleService.saveRole(roleAdmin);
-//            }
-//
-//            if(roleUser == null){
-//                roleUser = new Role("USER");
-//                roleService.saveRole(roleUser);
-//            }
+            Role roleAdmin = roleService.findByName("ADMIN");
+            Role roleUser =  roleService.findByName("USER");
+
+            if(roleAdmin == null){
+                roleAdmin = new Role("ADMIN");
+                roleService.saveRole(roleAdmin);
+            }
+
+            if(roleUser == null){
+                roleUser = new Role("USER");
+                roleService.saveRole(roleUser);
+            }
 
             if (userService.findByEmail("admin@admin.com")==null){
                 User user = new User();
@@ -48,9 +48,9 @@ public class SpringData {
                 user.setStreet_name("Boulevard des crabes");
                 user.setZip_code("63000");
                 user.setCountry("FRANCE");
-//
-//                user.addRole(roleUser);
-//                user.addRole(roleAdmin);
+
+                user.addRole(roleUser);
+                user.addRole(roleAdmin);
 
                 userService.saveUser(user);
             }
@@ -66,7 +66,7 @@ public class SpringData {
                 user2.setZip_code("75500");
                 user2.setCountry("FRANCE");
 
-//                user2.addRole(roleUser);
+                user2.addRole(roleUser);
 
                 userService.saveUser(user2);
             }
@@ -82,7 +82,7 @@ public class SpringData {
                 user3.setZip_code("75500");
                 user3.setCountry("ESPAGNE");
 
-//                user3.addRole(roleUser);
+                user3.addRole(roleUser);
 
                 userService.saveUser(user3);
             }
@@ -98,7 +98,7 @@ public class SpringData {
                 user4.setZip_code("69001");
                 user4.setCountry("CHINE");
 
-//                user4.addRole(roleUser);
+                user4.addRole(roleUser);
 
                 userService.saveUser(user4);
             }
