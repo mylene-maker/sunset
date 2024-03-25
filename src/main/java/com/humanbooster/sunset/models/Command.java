@@ -27,25 +27,24 @@ public class Command {
     @JoinColumn(nullable = false)
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "completed_order_id")
-    private CompletedOrder completedOrder;
+    private String idPayment;
 
-    public Command(@NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, CompletedOrder completedOrder) {
+
+    public Command(@NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user,  String idPayment) {
         this.payment = payment;
         this.remarque = remarque;
         this.reservations = reservations;
         this.user = user;
-        this.completedOrder = new CompletedOrder();
+        this.idPayment = idPayment;
     }
 
-    public Command(long id, @NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, CompletedOrder completedOrder) {
+    public Command(long id, @NotNull(message = "Veuillez indiquer si la commande est payée") Boolean payment, String remarque, List<Reservation> reservations, User user, String idPayment) {
         this.id = id;
         this.payment = payment;
         this.remarque = remarque;
         this.reservations = reservations;
         this.user = user;
-        this.completedOrder = completedOrder;
+        this.idPayment = idPayment;
     }
 
     public Command() {
@@ -109,12 +108,11 @@ public class Command {
         this.id = id;
     }
 
-    public CompletedOrder getCompletedOrder() {
-        return completedOrder;
+    public String getIdPayment() {
+        return idPayment;
     }
 
-    public void setCompletedOrder(CompletedOrder completedOrder) {
-        this.completedOrder = completedOrder;
+    public void setIdPayment(String idPayment) {
+        this.idPayment = idPayment;
     }
-
 }

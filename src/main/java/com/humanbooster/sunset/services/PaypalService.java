@@ -60,8 +60,6 @@ public class PaypalService {
                     .href();
             PaymentOrder paymentOrder = new PaymentOrder(order.id(), "success", redirectUrl);
             this.paymentOrderRepository.save(paymentOrder);
-//            commandService.isPay(commandId, applicationContext.paymentToken());
-//            System.out.println("Voici le token du paiement : " + applicationContext.paymentToken());
             return paymentOrder;
         }catch (IOException e){
             return new PaymentOrder("error");
@@ -75,6 +73,7 @@ public class PaypalService {
             HttpResponse<Order> httpResponse = payPalHttpClient.execute(ordersCaptureRequest);
             if (httpResponse.result().status() != null){
                 completedOrder = new CompletedOrder(token, "success");
+                commandService.isPay(2L, token); // ????????????????????????
             }else {
                 completedOrder = new CompletedOrder("error");
             }

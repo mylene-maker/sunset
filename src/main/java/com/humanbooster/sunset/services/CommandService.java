@@ -33,8 +33,10 @@ public class CommandService {
         if (optionnalCommand.isPresent()) {
             Command command = optionnalCommand.get();
             command.setPayment(true);
-//            command.setCompletedOrder(this.completeOrderRepository.findByPayId(String.valueOf(completedOrder)));
+            command.setIdPayment(payId);
             commandRepository.save(command);
         }
     }
+
+
 }

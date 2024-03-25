@@ -12,9 +12,9 @@ public class CompletedOrder implements Serializable {
     @Basic
     private String status;
 
-    @OneToOne
-    @JoinColumn(name = "command_id")
-    Command command;
+//    @OneToOne
+//    @JoinColumn(name = "command_id")
+//    Command command;
 
     public CompletedOrder() {
     }
@@ -44,11 +44,13 @@ public class CompletedOrder implements Serializable {
         this.status = status;
     }
 
-    public Command getCommand() {
-        return command;
-    }
+//    public Command getCommand() {
+//        return command;
+//    }
+//
+//    public void setCommand(Command command) {
+//        this.command = command;
+//    }
 
-    public void setCommand(Command command) {
-        this.command = command;
-    }
+
 }
