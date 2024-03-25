@@ -45,13 +45,6 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping("/reject/{reservationId}")
-    public String rejectReservation(@PathVariable Long reservationId) {
-
-        reservationService.rejectReservation(reservationId);
-
-        return "redirect:/admin";
-    }
 
     @RequestMapping("/edit/{reservationId}/{column}")
     public String editReservation(@PathVariable Long reservationId, @PathVariable int column) {

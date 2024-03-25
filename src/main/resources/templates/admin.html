@@ -238,14 +238,15 @@
                                         <a th:href="@{'/admin/accept/' + ${reservation.id}}">
                                             <button class="btn btn-outline-warning">Accepter</button>
                                         </a>
-                                        <a th:href="@{'/admin/reject/' + ${reservation.id}}">
+                                        <a th:href="@{'/email/new/' + ${reservation.id}}">
                                             <button class="btn btn-danger">Refuser</button>
                                         </a>
                                     </td>
                                 </tr>
+
+
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                     <div th:each="reservation, iterStat : ${command.getReservations()}">

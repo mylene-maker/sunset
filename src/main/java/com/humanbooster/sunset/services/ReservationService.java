@@ -152,16 +152,14 @@ public class ReservationService {
         }
     }
 
-    public void rejectReservation(Long reservationId) {
-        Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
-
-        if (optionalReservation.isPresent()) {
-            Reservation reservation = optionalReservation.get();
-
+//    public void rejectReservation(Long reservationId) {
+//        Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
+//
+//        if (optionalReservation.isPresent()) {
+//            Reservation reservation = optionalReservation.get();
 //            reservationRepository.delete(reservation);
-//            If reject notify user with an email ??
-        }
-    }
+//        }
+//    }
 
     public void editReservation(Long reservationId, int column) {
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
