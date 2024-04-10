@@ -238,7 +238,7 @@
                                         <a th:href="@{'/admin/accept/' + ${reservation.id}}">
                                             <button class="btn btn-outline-warning">Accepter</button>
                                         </a>
-                                        <a th:href="@{'/email/new/' + ${reservation.id}}">
+                                        <a th:href="@{'/email/new/' + ${reservation.id} + '/' + ${reservation.getDate_to()}  + '/' + ${command.getCustomer().getEmail()}}">
                                             <button class="btn btn-danger">Refuser</button>
                                         </a>
                                     </td>
