@@ -34,7 +34,7 @@ public class EmailController {
     ModelAndView formEmail(@PathVariable Long reservationId, @PathVariable ("reservationDate") String reservationDateStr, @PathVariable String userEmail){
         ModelAndView mv = new ModelAndView("email/email");
 
-        // Convertir la date de chaîne en objet Date
+        // Convertion de la date de chaîne en objet Date
         Date reservationDate = null;
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
